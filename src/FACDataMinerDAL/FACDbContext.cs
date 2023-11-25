@@ -1,0 +1,26 @@
+using Microsoft.EntityFrameworkCore;
+using Npgsql;
+using Microsoft.Extensions.Configuration;
+
+
+namespace FACDataMinerDAL;
+
+// ReSharper disable once InconsistentNaming
+public class FACDbContext: DbContext
+{
+
+    protected readonly IConfiguration Configuration;
+    
+    public FACDbContext(IConfiguration configuration)
+    {
+        Configuration = configuration;
+    }
+    
+    protected override void OnConfiguring(DbContextOptionsBuilder options)
+    {
+        options.UseNpgsql(Configuration.GetConnectionString("FACDB"));
+    }
+    
+    
+    
+}
