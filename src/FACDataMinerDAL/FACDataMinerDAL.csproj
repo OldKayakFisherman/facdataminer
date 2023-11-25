@@ -7,10 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\FACDataMiner.SQL\FACDataMiner.SQL.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Folder Include="Repositories\" />
     </ItemGroup>
 
