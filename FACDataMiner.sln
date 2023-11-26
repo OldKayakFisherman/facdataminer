@@ -1,9 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F5E13109-B9EA-4CF6-97F8-8F6344190A76}"
-	ProjectSection(SolutionItems) = preProject
-		src\.gitignore = src\.gitignore
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACDataMinerWeb", "src\FACDataMinerWeb\FACDataMinerWeb.csproj", "{B971AED9-7278-4366-80D8-36ED864D64E3}"
 EndProject
