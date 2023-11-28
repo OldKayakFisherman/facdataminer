@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACDataMinerImportService",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACDataMinerDAL", "src\FACDataMinerDAL\FACDataMinerDAL.csproj", "{92FAECD2-A686-4F20-AE71-494C29BCAFCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACDataMinder.DAL.Tests", "tests\FACDataMinder.DAL.Tests\FACDataMinder.DAL.Tests.csproj", "{B6632B9D-DF8A-42A6-A17B-D2ED4C83D39A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACDataMinderDAL.Tests", "tests\FACDataMinderDAL.Tests\FACDataMinderDAL.Tests.csproj", "{B6632B9D-DF8A-42A6-A17B-D2ED4C83D39A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{407BEAB7-2FE9-4D04-BE72-6ABA10503C68}"
 EndProject

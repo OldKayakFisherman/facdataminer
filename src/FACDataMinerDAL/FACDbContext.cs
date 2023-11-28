@@ -1,6 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Npgsql;
-using Microsoft.Extensions.Configuration;
 using FACDataMinerDAL.Entities;
 
 namespace FACDataMinerDAL;
@@ -8,17 +6,11 @@ namespace FACDataMinerDAL;
 
 public class FACDbContext: DbContext
 {
-    private readonly IConfiguration Configuration;
-    
-    public FACDbContext(IConfiguration configuration)
+    public FACDbContext(DbContextOptions<FACDbContext> options): base(options)
     {
-        Configuration = configuration;
-    }
-    
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
-    {
-        options.UseNpgsql(Configuration.GetConnectionString("FACDB"));
-    }
+        
+    } 
+   
 
     public DbSet<AdditionalUEIRecord> AdditionalUEIRecords { get; set; }
     public DbSet<AwardRecord> AwardRecords { get; set; }

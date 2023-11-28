@@ -1,5 +1,6 @@
 using FACDataMinerDAL.Entities;
 
+
 namespace FACDataMinerDAL.Repositories;
 
 public class GeneralRecordRepository: BaseRepository<GeneralRecord>, IBaseRepository<GeneralRecord>
