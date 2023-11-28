@@ -5,7 +5,7 @@ using EFCore.BulkExtensions;
 
 namespace FACDataMinerDAL.Repositories;
 
-public class BaseRepository<T> where T : class
+public class BaseRepository<T> where T : class, IBaseFACRecord
 {
     
     private readonly FACDbContext _ctx;
@@ -44,4 +44,24 @@ public class BaseRepository<T> where T : class
         _ctx.BulkSaveChanges();
     }
 
+    public T? Find(int id)
+    {
+        return _ctx.Find<T>(id);
+    }
+
+    public IList<T> FindByReportId(string reportId)
+    {
+        return _ctx.Set<T>().Where(x => x.ReportId == reportId).ToList();
+    }
+
+    public IList<T> FindByAuditYear(short auditYear)
+    {
+        return _ctx.Set<T>().Where(x => x.AuditYear == auditYear).ToList();
+    }
+
+    public IList<T> FindByAuditeeUEI(string auditeeUEI)
+    {
+        return _ctx.Set<T>().Where(x => x.AuditeeUEI == auditeeUEI).ToList();
+    }
+    
 }
