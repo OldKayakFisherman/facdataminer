@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace FACDataMinerDAL.Entities;
 
 [Table("additional_ueis")]
-public class AuditionalUEIRecord: IBaseFACRecord
+public class AdditionalUEIRecord: IBaseFACRecord
 {
     [Key]
     public int Id { get; set; }
@@ -23,7 +23,7 @@ public class AuditionalUEIRecord: IBaseFACRecord
     // ReSharper disable once InconsistentNaming
     public string? AdditionalUEI { get; set; }
 
-    public AuditionalUEIRecord(string reportId, short auditYear)
+    public AdditionalUEIRecord(string reportId, short auditYear)
     {
         this.ReportId = reportId;
         this.AuditYear = auditYear;

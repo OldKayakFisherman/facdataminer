@@ -1,15 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using Microsoft.Extensions.Configuration;
-
+using FACDataMinerDAL.Entities;
 
 namespace FACDataMinerDAL;
 
-// ReSharper disable once InconsistentNaming
+
 public class FACDbContext: DbContext
 {
-
-    protected readonly IConfiguration Configuration;
+    private readonly IConfiguration Configuration;
     
     public FACDbContext(IConfiguration configuration)
     {
@@ -20,7 +19,17 @@ public class FACDbContext: DbContext
     {
         options.UseNpgsql(Configuration.GetConnectionString("FACDB"));
     }
-    
-    
-    
+
+    public DbSet<AdditionalUEIRecord> AdditionalUEIRecords { get; set; }
+    public DbSet<AwardRecord> AwardRecords { get; set; }
+    public DbSet<CorrectiveActionPlanRecord> CorrectiveActionPlanRecords { get; set; }
+    public DbSet<FindingRecord> FindingRecords { get; set; }
+    public DbSet<FindingTextRecord> FindingTextRecords { get; set; }
+    public DbSet<GeneralRecord> GeneralRecords { get; set; }
+    public DbSet<NotesToSEFARecord> NotesToSEFARecords { get; set; }
+    public DbSet<PassthroughRecord> PassthroughRecords { get; set; }
+    public DbSet<SecondaryAuditorRecord> SecondaryAuditorRecords { get; set; }
+
+
+
 }
