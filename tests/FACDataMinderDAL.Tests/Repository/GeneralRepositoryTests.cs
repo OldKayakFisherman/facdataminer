@@ -19,7 +19,7 @@ public class GeneralRepositoryTests
         GeneralRecordRepository repo = new GeneralRecordRepository(ctx.Context);
         
        
-        for (short y = 2016; y <= 2023; y++)
+        for (int y = 2016; y <= 2023; y++)
         {
             var rdm = new Random();
 

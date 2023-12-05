@@ -13,7 +13,7 @@ public class FindingRecord: IBaseFACRecord
     public string ReportId { get; set; }
     
     [Column("audit_year")]
-    public short AuditYear { get; set; }
+    public int AuditYear { get; set; }
     
     [Column("auditee_uei")]
     public string AuditeeUEI { get; set; }
@@ -53,7 +53,7 @@ public class FindingRecord: IBaseFACRecord
     
     
     
-    public FindingRecord(string reportId, short auditYear, string auditeeUEI)
+    public FindingRecord(string reportId, int auditYear, string auditeeUEI)
     {
         this.ReportId = reportId;
         this.AuditYear = auditYear;

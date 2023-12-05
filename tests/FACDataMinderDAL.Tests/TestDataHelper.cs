@@ -26,7 +26,7 @@ public class TestDataHelper
         return result;
     }
     
-    public static IList<GeneralRecord> ConstructGeneralRecordsWithAuditYear(short auditYear, int recordCount)
+    public static IList<GeneralRecord> ConstructGeneralRecordsWithAuditYear(int auditYear, int recordCount)
     {
         IList<GeneralRecord> result = new List<GeneralRecord>();
 
@@ -126,6 +126,7 @@ public class TestDataHelper
         return result;
     }
 
+    
     public static IList<AdditionalUEIRecord> ConstructAdditionalUEIRecordsWithGeneralRecord(GeneralRecord generalRecord,
         int recordCount)
     {
@@ -305,6 +306,6 @@ public class TestDataHelper
         }
 
         return result;
-
     }
+    
 }

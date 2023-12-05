@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace FACDataMinerDAL.Entities;
 
 [Table("findings_text")]
-public class FindingTextRecord
+public class FindingTextRecord: IBaseFACRecord
 {
     [Key]
     public int Id { get; set; }
@@ -13,7 +13,7 @@ public class FindingTextRecord
     public string ReportId { get; set; }
     
     [Column("audit_year")]
-    public short AuditYear { get; set; }
+    public int AuditYear { get; set; }
     
     [Column("auditee_uei")]
     public string AuditeeUEI { get; set; }
@@ -28,7 +28,7 @@ public class FindingTextRecord
     public string? findingText { get; set; }
 
 
-    public FindingTextRecord(string reportId, short auditYear, string auditeeUEI)
+    public FindingTextRecord(string reportId, int auditYear, string auditeeUEI)
     {
         this.ReportId = reportId;
         this.AuditYear = auditYear;

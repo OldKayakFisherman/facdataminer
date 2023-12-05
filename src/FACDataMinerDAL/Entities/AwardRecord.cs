@@ -10,13 +10,13 @@ public class AwardRecord: IBaseFACRecord
     public int Id { get; set; }
 
     [Column("report_id")]
-    public string ReportId { get; set; }
+    public string? ReportId { get; set; }
     
     [Column("audit_year")]
-    public short AuditYear { get; set; }
+    public int AuditYear { get; set; }
 
     [Column("auditee_uei")]
-    public string AuditeeUEI { get; set; }
+    public string? AuditeeUEI { get; set; }
     
     [Column("award_reference")]
     public string? AwardReference { get; set; }
@@ -76,7 +76,7 @@ public class AwardRecord: IBaseFACRecord
     public decimal? PassthroughAmount { get; set; }
 
     
-    public AwardRecord(string reportId, short auditYear, string auditeeUEI)
+    public AwardRecord(string reportId, int auditYear, string auditeeUEI)
     {
         this.ReportId = reportId;
         this.AuditYear = auditYear;

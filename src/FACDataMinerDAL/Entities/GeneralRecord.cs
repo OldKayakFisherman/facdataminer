@@ -10,13 +10,13 @@ public class GeneralRecord: IBaseFACRecord
     public int Id { get; set; }
 
     [Column("report_id")]
-    public string ReportId { get; set; }
+    public string? ReportId { get; set; }
     
     [Column("audit_year")]
-    public short AuditYear { get; set; }
+    public int AuditYear { get; set; }
 
     [Column("auditee_uei")]
-    public string AuditeeUEI { get; set; }
+    public string? AuditeeUEI { get; set; }
 
     [Column("auditee_certify_name")]
     public string? AuditeeCertifyName { get; set; }
@@ -179,7 +179,7 @@ public class GeneralRecord: IBaseFACRecord
     [Column("data_source")]
     public string? DataSource { get; set; }
     
-    public GeneralRecord(string reportId, short auditYear, string auditeeUEI)
+    public GeneralRecord(string reportId, int auditYear, string auditeeUEI)
     {
         this.ReportId = reportId;
         this.AuditYear = auditYear;

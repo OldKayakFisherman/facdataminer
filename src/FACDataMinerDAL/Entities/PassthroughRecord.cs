@@ -4,19 +4,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace FACDataMinerDAL.Entities;
 
 [Table("passthroughs")]
-public class PassthroughRecord
+public class PassthroughRecord: IBaseFACRecord
 {
     [Key]
     public int Id { get; set; }
 
     [Column("report_id")]
-    public string ReportId { get; set; }
+    public string? ReportId { get; set; }
     
     [Column("audit_year")]
-    public short AuditYear { get; set; }
+    public int AuditYear { get; set; }
     
     [Column("auditee_uei")]
-    public string AuditeeUEI { get; set; }
+    public string? AuditeeUEI { get; set; }
     
     [Column("award_reference")]
     public string? AwardReference { get; set; }
@@ -27,7 +27,7 @@ public class PassthroughRecord
     [Column("passthrough_name")]
     public string? PassthroughName { get; set; }
 
-    public PassthroughRecord(string reportId, short auditYear, string auditeeUEI)
+    public PassthroughRecord(string reportId, int auditYear, string auditeeUEI)
     {
         this.ReportId = reportId;
         this.AuditYear = auditYear;

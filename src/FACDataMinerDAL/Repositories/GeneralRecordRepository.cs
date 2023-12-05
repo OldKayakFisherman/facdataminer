@@ -12,7 +12,7 @@ public class GeneralRecordRepository: BaseRepository<GeneralRecord>, IBaseReposi
         _ctx = ctx;
     }
 
-    public IList<string> GetUniqueReportsByAuditYear(short auditYear)
+    public List<string?> GetUniqueReportsByAuditYear(int auditYear)
     {
         return _ctx.GeneralRecords
             .Where(x => x.AuditYear == auditYear)

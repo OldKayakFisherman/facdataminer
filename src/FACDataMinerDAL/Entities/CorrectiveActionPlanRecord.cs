@@ -10,13 +10,13 @@ public class CorrectiveActionPlanRecord: IBaseFACRecord
     public int Id { get; set; }
 
     [Column("report_id")]
-    public string ReportId { get; set; }
+    public string? ReportId { get; set; }
     
     [Column("audit_year")]
-    public short AuditYear { get; set; }
+    public int AuditYear { get; set; }
     
     [Column("auditee_uei")]
-    public string AuditeeUEI { get; set; }
+    public string? AuditeeUEI { get; set; }
 
     [Column("finding_ref_number")] 
     public string? FindingReferenceNumber { get; set; }
@@ -28,7 +28,7 @@ public class CorrectiveActionPlanRecord: IBaseFACRecord
     public string? PlannedAction { get; set; }
     
 
-    public CorrectiveActionPlanRecord(string reportId, short auditYear, string auditeeUEI)
+    public CorrectiveActionPlanRecord(string reportId, int auditYear, string auditeeUEI)
     {
         this.ReportId = reportId;
         this.AuditYear = auditYear;

@@ -13,7 +13,7 @@ public class SecondaryAuditorRecord: IBaseFACRecord
     public string ReportId { get; set; }
     
     [Column("audit_year")]
-    public short AuditYear { get; set; }
+    public int AuditYear { get; set; }
 
     [Column("auditee_uei")]
     public string AuditeeUEI { get; set; }
@@ -48,7 +48,7 @@ public class SecondaryAuditorRecord: IBaseFACRecord
 
 
     
-    public SecondaryAuditorRecord(string reportId, short auditYear, string auditeeUEI)
+    public SecondaryAuditorRecord(string reportId, int auditYear, string auditeeUEI)
     {
         this.ReportId = reportId;
         this.AuditYear = auditYear;

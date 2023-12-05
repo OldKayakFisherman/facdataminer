@@ -10,24 +10,26 @@ public class AdditionalUEIRecord: IBaseFACRecord
     public int Id { get; set; }
 
     [Column("report_id")]
-    public string ReportId { get; set; }
+    public string? ReportId { get; set; }
     
     [Column("audit_year")]
-    public short AuditYear { get; set; }
+    public int AuditYear { get; set; }
     
     [Column("auditee_uei")]
-    // ReSharper disable once InconsistentNaming
     public string? AuditeeUEI { get; set; }
 
     [Column("additional_uei")]
-    // ReSharper disable once InconsistentNaming
     public string? AdditionalUEI { get; set; }
 
-    public AdditionalUEIRecord(string reportId, short auditYear, string additionalUei)
+    public AdditionalUEIRecord(string reportId, int auditYear, string auditeeUei)
     {
         this.ReportId = reportId;
         this.AuditYear = auditYear;
-        this.AuditeeUEI = additionalUei;
+        this.AuditeeUEI = auditeeUei;
     }
-    
+
+    public AdditionalUEIRecord()
+    {
+        AuditYear = DateTime.Now.Year;
+    }
 }

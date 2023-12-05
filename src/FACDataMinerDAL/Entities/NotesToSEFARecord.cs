@@ -13,7 +13,7 @@ public class NotesToSEFARecord: IBaseFACRecord
     public string ReportId { get; set; }
     
     [Column("audit_year")]
-    public short AuditYear { get; set; }
+    public int AuditYear { get; set; }
     
     [Column("auditee_uei")]
     public string AuditeeUEI { get; set; }
@@ -34,7 +34,7 @@ public class NotesToSEFARecord: IBaseFACRecord
     public bool ContainsChartsOrTables { get; set; }
 
 
-    public NotesToSEFARecord(string reportId, short auditYear, string auditeeUEI)
+    public NotesToSEFARecord(string reportId, int auditYear, string auditeeUEI)
     {
         this.ReportId = reportId;
         this.AuditYear = auditYear;
