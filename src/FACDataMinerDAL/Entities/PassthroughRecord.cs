@@ -25,7 +25,7 @@ public class PassthroughRecord
     public string? PassthroughId { get; set; }
 
     [Column("passthrough_name")]
-    public string? PassthroughNamwe { get; set; }
+    public string? PassthroughName { get; set; }
 
     public PassthroughRecord(string reportId, short auditYear, string auditeeUEI)
     {

@@ -58,7 +58,7 @@ public class AwardRecord: IBaseFACRecord
     public bool IsLoan { get; set; }
     
     [Column("loan_balance")]
-    public string? LoanBalance { get; set; }
+    public decimal? LoanBalance { get; set; }
     
     [Column("is_direct")]
     public bool IsDirect { get; set; }

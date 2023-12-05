@@ -23,10 +23,11 @@ public class AdditionalUEIRecord: IBaseFACRecord
     // ReSharper disable once InconsistentNaming
     public string? AdditionalUEI { get; set; }
 
-    public AdditionalUEIRecord(string reportId, short auditYear)
+    public AdditionalUEIRecord(string reportId, short auditYear, string additionalUei)
     {
         this.ReportId = reportId;
         this.AuditYear = auditYear;
+        this.AuditeeUEI = additionalUei;
     }
     
 }

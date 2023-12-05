@@ -17,6 +17,10 @@ public class SecondaryAuditorRecord: IBaseFACRecord
 
     [Column("auditee_uei")]
     public string AuditeeUEI { get; set; }
+
+    
+    [Column("auditor_ein")]
+    public string? AuditorEIN { get; set; }
     
     [Column("auditor_name")]
     public string? AuditorName { get; set; }

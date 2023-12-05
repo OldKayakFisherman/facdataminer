@@ -168,7 +168,7 @@ public class GeneralRecord: IBaseFACRecord
     public string? AuditPeriodCovered { get; set; }
     
     [Column("total_amount_expended")]
-    public string? TotalAmountExpended { get; set; }
+    public decimal? TotalAmountExpended { get; set; }
 
     [Column("type_audit_code")]
     public string? TypeAuditCode { get; set; }
