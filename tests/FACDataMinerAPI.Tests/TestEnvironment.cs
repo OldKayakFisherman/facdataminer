@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Configuration;
+using DotNetEnv;
 
 namespace FACDataMinerAPI.Tests;
 
@@ -14,9 +15,13 @@ public class TestEnvironment
             .AddUserSecrets<TestEnvironment>();
 
         config = builder.Build();
+
+        Env.TraversePath().Load();
+
+        Assert.NotNull(Env.GetString("api_token"));
+        Assert.NotNull(Env.GetString("api_endpoint"));
+      
         
-        Assert.NotNull(config["api_token"]);
-        Assert.NotNull(config["api_endpoint"]);
     }
     
 }
