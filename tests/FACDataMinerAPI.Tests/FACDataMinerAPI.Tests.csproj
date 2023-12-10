@@ -29,4 +29,8 @@
       </Reference>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\FACDataMinerAPI\FACDataMinerAPI.csproj" />
+    </ItemGroup>
+
 </Project>

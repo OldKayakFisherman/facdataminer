@@ -1,23 +1,15 @@
+using System.Collections;
 using System.Text.Json;
 using RestSharp;
 
 
 namespace FACDataMinerAPI.Services;
 
-public class GeneralAPIService
+public class GeneralAPIService: BaseAPIService
 {
-    public IList<string> GetReportIdsByAuditYear(int auditYear, Uri baseEndpoint,string token, HttpClient httpClient)
+    public async Task<FACAPIResponse<IList<IDictionary<string, string>>>> GetReportIdsByAuditYear(int auditYear, StandardAPIServiceArguments args)
     {
-        Uri targetUri = new Uri(baseEndpoint, $"general?select=report_id&audit_year=eq.{auditYear}");
-
-        var client = new RestClient(httpClient);
-        var request = new RestRequest(targetUri, Method.Get);
-
-        request.AddHeader("X-Api-Key", token);
-
-        var response = client.Execute(request);
-
-        return JsonSerializer.Deserialize<IList<string>>(response.Content);
-
+        string apiEndpoint = $"general?select=report_id&audit_year=eq.{auditYear}";
+        return await base.PerformRequest<IList<IDictionary<string, string>>>(apiEndpoint, args);
     }
 }
