@@ -26,6 +26,6 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       env:
-        api_token: ${{ secrets.API_TOKEN }},
-        api_endpoint: ${{ secrets.API_ENDPOINT }}
+        API_TOKEN: ${{ secrets.API_TOKEN }},
+        API_ENDPOINT: ${{ secrets.API_ENDPOINT }}
       run: dotnet test --no-build --verbosity normal

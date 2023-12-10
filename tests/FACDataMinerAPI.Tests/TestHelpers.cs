@@ -20,8 +20,8 @@ public class TestHelpers
             .AddUserSecrets<TestHelpers>()
             .Build();
 
-        _api_key = config["api_token"];
-        _api_endpoint = config["api_endpoint"];
+        _api_key = config["API_TOKEN"];
+        _api_endpoint = config["API_ENDPOINT"];
 
     }
     
