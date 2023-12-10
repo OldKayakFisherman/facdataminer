@@ -17,11 +17,14 @@ public class GeneralAPIServiceTests
 
         if (!response.IsSuccessful)
         {
+            Console.WriteLine("Response was not successful");
+            Console.WriteLine($"Base Url: {TestHelpers.GetAPIEndpoint()}");
+            
             Console.WriteLine(response.ResponseUri.ToString());
 
             if (!string.IsNullOrEmpty(response.ErrorMessage))
             {
-                Console.WriteLine(response.ErrorMessage);
+                Console.WriteLine($"Error Message: {response.ErrorMessage}");
             }
         }
         
