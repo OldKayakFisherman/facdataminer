@@ -14,6 +14,16 @@ public class GeneralAPIServiceTests
             TestHelpers.CreateStandardApiTestApiServiceArguments(1));
         
         Assert.That(response, Is.Not.Null);
+
+        if (!response.IsSuccessful)
+        {
+            Console.WriteLine(response.ResponseUri.ToString());
+
+            if (!string.IsNullOrEmpty(response.ErrorMessage))
+            {
+                Console.WriteLine(response.ErrorMessage);
+            }
+        }
         
         Assert.Multiple(() =>
         {
