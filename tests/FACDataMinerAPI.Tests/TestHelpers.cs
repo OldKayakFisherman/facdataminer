@@ -52,7 +52,7 @@ public class TestHelpers
         var config = new ConfigurationBuilder().AddUserSecrets<TestHelpers>().Build();
         foreach (var child in config.GetChildren())
         {
-            Environment.SetEnvironmentVariable(child.Key, child.Value);
+            Environment.SetEnvironmentVariable(child.Key, child.Value?.Trim());
         }
     }
     
