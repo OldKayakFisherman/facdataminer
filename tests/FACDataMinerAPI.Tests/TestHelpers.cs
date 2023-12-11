@@ -9,19 +9,23 @@ namespace FACDataMinerAPI.Tests;
 public class TestHelpers
 {
     private static readonly HttpClient _httpClient;
-    private static readonly string _api_key;
-    private static readonly string _api_endpoint;
+    private static readonly string? _api_key;
+    private static readonly string? _api_endpoint;
     
     static TestHelpers()
     {
         _httpClient = new HttpClient();
         
+        /*
         var config = new ConfigurationBuilder()
             .AddUserSecrets<TestHelpers>()
             .Build();
-
-        _api_key = config["API_TOKEN"];
-        _api_endpoint = config["API_ENDPOINT"];
+        */
+        
+        SetEnvironmentVariablesFromUserSecrets();
+        
+        _api_key = Environment.GetEnvironmentVariable("API_TOKEN");
+        _api_endpoint = Environment.GetEnvironmentVariable("API_ENDPOINT");
 
     }
     
@@ -48,6 +52,16 @@ public class TestHelpers
 
         return new StandardAPIServiceArguments(apiEndPoint, apiKey, httpClient, desiredRecordCount);
         
+    }
+    
+    
+    static void SetEnvironmentVariablesFromUserSecrets()
+    {
+        var config = new ConfigurationBuilder().AddUserSecrets<TestHelpers>().Build();
+        foreach (var child in config.GetChildren())
+        {
+            Environment.SetEnvironmentVariable(child.Key, child.Value);
+        }
     }
     
 }
