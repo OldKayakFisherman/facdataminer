@@ -23,7 +23,7 @@ public class TestHelpers
     
     public static string GetAPIKey()
     {
-        return _api_key;
+        return _api_key.Substring(0, 40);
     }
     
     public static Uri GetAPIEndpoint()
