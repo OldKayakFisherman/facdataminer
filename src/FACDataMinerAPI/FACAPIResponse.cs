@@ -26,7 +26,7 @@ public class FACAPIResponse<T>
         this.IsSuccessful = response.IsSuccessful;
         this.ResponseUri = response.ResponseUri;
         
-        Console.WriteLine($"Response: {response}");
+        Console.WriteLine($"Response: {response.ResponseUri}");
         
         if (response.IsSuccessful)
         {
