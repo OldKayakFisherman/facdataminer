@@ -26,10 +26,10 @@ public class FACAPIResponse<T>
         this.IsSuccessful = response.IsSuccessful;
         this.ResponseUri = response.ResponseUri;
         
-        Console.WriteLine($"Response Uri: {response.ResponseUri}");
         Console.WriteLine($"Was response successful?: {response.IsSuccessful}");
         Console.WriteLine($"Response Status Code?: {response.StatusCode}");
-
+        
+        
         if (!string.IsNullOrEmpty(response.Content))
         {
             Console.WriteLine($"Response content?: {response.Content}");
