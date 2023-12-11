@@ -12,7 +12,7 @@ namespace FACDataMinderDAL.Tests.Repository;
 public class GeneralRepositoryTests
 {
     [Test]
-    public void TestGetUniqueReportsByAuditYear()
+    public async Task TestGetUniqueReportsByAuditYear()
     {
         using var ctx = new InMemoryFACDbContext();
 
@@ -29,7 +29,7 @@ public class GeneralRepositoryTests
             
             repo.BulkInsert(sampleRecords);
             
-            Assert.That(repo.GetUniqueReportsByAuditYear(y), Has.Count.EqualTo(sampleSize));
+            Assert.That(await repo.GetUniqueReportsByAuditYear(y), Has.Count.EqualTo(sampleSize));
             
         }
             

@@ -1,6 +1,4 @@
 
-
-using DotNetEnv;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestPlatform.TestHost;
 
@@ -9,23 +7,17 @@ namespace FACDataMinerAPI.Tests;
 public class TestHelpers
 {
     private static readonly HttpClient _httpClient;
-    private static readonly string? _api_key;
-    private static readonly string? _api_endpoint;
+    private static readonly string _api_key;
+    private static readonly string _api_endpoint;
     
     static TestHelpers()
     {
         _httpClient = new HttpClient();
         
-        /*
-        var config = new ConfigurationBuilder()
-            .AddUserSecrets<TestHelpers>()
-            .Build();
-        */
-        
         SetEnvironmentVariablesFromUserSecrets();
         
-        _api_key = Environment.GetEnvironmentVariable("API_TOKEN");
-        _api_endpoint = Environment.GetEnvironmentVariable("API_ENDPOINT");
+        _api_key = Environment.GetEnvironmentVariable("API_TOKEN") ?? string.Empty;
+        _api_endpoint = Environment.GetEnvironmentVariable("API_ENDPOINT") ?? string.Empty;
 
     }
     

@@ -1,4 +1,5 @@
 using FACDataMinerDAL.Entities;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace FACDataMinerDAL.Repositories;
@@ -12,11 +13,11 @@ public class GeneralRecordRepository: BaseRepository<GeneralRecord>, IBaseReposi
         _ctx = ctx;
     }
 
-    public List<string?> GetUniqueReportsByAuditYear(int auditYear)
+    public async Task<List<string?>> GetUniqueReportsByAuditYear(int auditYear)
     {
-        return _ctx.GeneralRecords
+        return await _ctx.GeneralRecords
             .Where(x => x.AuditYear == auditYear)
-            .Select(x => x.ReportId).ToList();
+            .Select(x => x.ReportId).ToListAsync();
     }
     
 }

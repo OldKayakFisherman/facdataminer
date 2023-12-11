@@ -26,6 +26,8 @@ public class FACAPIResponse<T>
         this.IsSuccessful = response.IsSuccessful;
         this.ResponseUri = response.ResponseUri;
         
+        Console.WriteLine($"Response: {response}");
+        
         if (response.IsSuccessful)
         {
             this.HttpStatusCode = response.StatusCode;
