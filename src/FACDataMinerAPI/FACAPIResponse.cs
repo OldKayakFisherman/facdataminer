@@ -53,7 +53,7 @@ public class FACAPIResponse<T>
         
         var evalValues = JsonConvert.DeserializeObject<T>(content);
 
-        if (evalValues != null && evalValues.GetType() == typeof(IList<IDictionary<string, string>>))
+        if (evalValues != null && evalValues.GetType() == typeof(List<IDictionary<string, string>>))
         {
             ResultColumnCount = ((IList<IDictionary<string, string>>)evalValues)[0].Keys.Count;
         }
