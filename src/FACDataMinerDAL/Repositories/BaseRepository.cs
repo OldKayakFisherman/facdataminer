@@ -15,53 +15,53 @@ public class BaseRepository<T> where T : class, IBaseFACRecord
         _ctx = ctx;
     }
     
-    public virtual IList<T> All()
+    public virtual async Task<IList<T>> All()
     {
-        return _ctx.Set<T>().ToList();
+        return await _ctx.Set<T>().ToListAsync();
     }
     
-    public virtual void Add(T entity)
+    public virtual async Task Add(T entity)
     {
-        _ctx.Set<T>().Add(entity);
-        _ctx.SaveChanges();
+        await _ctx.Set<T>().AddAsync(entity);
+        await _ctx.SaveChangesAsync();
     }
     
-    public virtual void Delete(T entity)
+    public virtual async Task Delete(T entity)
     {
         _ctx.Set<T>().Remove(entity);
-        _ctx.SaveChanges();
+        await _ctx.SaveChangesAsync();
     }
 
-    public virtual void BulkInsert(IList<T> entities)
+    public virtual async Task BulkInsert(IList<T> entities)
     {
-        _ctx.BulkInsert(entities);
-        _ctx.BulkSaveChanges();
+        await _ctx.BulkInsertAsync(entities);
+        await _ctx.BulkSaveChangesAsync();
     }
 
-    public virtual void BulkDelete(IList<T> entities)
+    public virtual async Task BulkDelete(IList<T> entities)
     {
-        _ctx.BulkDelete(entities);
-        _ctx.BulkSaveChanges();
+        await _ctx.BulkDeleteAsync(entities);
+        await _ctx.BulkSaveChangesAsync();
     }
 
-    public T? Find(int id)
+    public virtual async Task<T?> Find(int id)
     {
-        return _ctx.Find<T>(id);
+        return await _ctx.FindAsync<T>(id);
     }
 
-    public IList<T> FindByReportId(string reportId)
+    public virtual async Task<IList<T>> FindByReportId(string reportId)
     {
-        return _ctx.Set<T>().Where(x => x.ReportId == reportId).ToList();
+        return await _ctx.Set<T>().Where(x => x.ReportId == reportId).ToListAsync();
     }
 
-    public IList<T> FindByAuditYear(short auditYear)
+    public virtual async Task<IList<T>> FindByAuditYear(short auditYear)
     {
-        return _ctx.Set<T>().Where(x => x.AuditYear == auditYear).ToList();
+        return await _ctx.Set<T>().Where(x => x.AuditYear == auditYear).ToListAsync();
     }
 
-    public IList<T> FindByAuditeeUEI(string auditeeUEI)
+    public virtual async Task<IList<T>> FindByAuditeeUEI(string auditeeUEI)
     {
-        return _ctx.Set<T>().Where(x => x.AuditeeUEI == auditeeUEI).ToList();
+        return await _ctx.Set<T>().Where(x => x.AuditeeUEI == auditeeUEI).ToListAsync();
     }
     
 }

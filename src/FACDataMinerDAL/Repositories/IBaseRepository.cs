@@ -4,15 +4,15 @@ namespace FACDataMinerDAL.Repositories;
 
 public interface IBaseRepository<T> where T : class, IBaseFACRecord
 {
-    IList<T> All();
-    void Add(T entity);
-    void Delete(T entity);
-    void BulkInsert(IList<T> entities);
-    void BulkDelete(IList<T> entities);
-    T? Find(int id);
-    IList<T> FindByReportId(string reportId);
-    IList<T> FindByAuditYear(short auditYear);
-    IList<T> FindByAuditeeUEI(string auditeeUEI);
+    Task<IList<T>> All();
+    Task Add(T entity);
+    Task Delete(T entity);
+    Task BulkInsert(IList<T> entities);
+    Task BulkDelete(IList<T> entities);
+    Task<T?> Find(int id);
+    Task<IList<T>> FindByReportId(string reportId);
+    Task<IList<T>> FindByAuditYear(short auditYear);
+    Task<IList<T>> FindByAuditeeUEI(string auditeeUEI);
 
     
 }

@@ -36,14 +36,20 @@ public class TestHelpers
         return _httpClient;
     }
 
-    public static StandardAPIServiceArguments CreateStandardApiTestApiServiceArguments(int desiredRecordCount)
+    public static StandardAPIServiceArguments CreateStandardApiTestApiServiceArguments(int? desiredRecordCount = null)
     {
         string apiKey = GetAPIKey();
         Uri apiEndPoint = GetAPIEndpoint();
         HttpClient httpClient = GetHttpClient();
 
-        return new StandardAPIServiceArguments(apiEndPoint, apiKey, httpClient, desiredRecordCount);
-        
+        if (desiredRecordCount.HasValue)
+        {
+            return new StandardAPIServiceArguments(apiEndPoint, apiKey, httpClient, desiredRecordCount);
+        }
+        else
+        {
+            return new StandardAPIServiceArguments(apiEndPoint, apiKey, httpClient);
+        }
     }
     
     

@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Net;
-using System.Text.Json;
 using RestSharp;
+using Newtonsoft.Json;
 
 namespace FACDataMinerAPI;
 
-public class FACAPIResponse<T>
+public class FACAPIResponse<T> 
 {
     public T? Data { get; set; } 
     public bool IsSuccessful { get; set; } = false;
@@ -26,17 +26,6 @@ public class FACAPIResponse<T>
         this.IsSuccessful = response.IsSuccessful;
         this.ResponseUri = response.ResponseUri;
         
-        Console.WriteLine($"Was response successful?: {response.IsSuccessful}");
-        Console.WriteLine($"Response Status Code?: {response.StatusCode}");
-        
-        
-        if (!string.IsNullOrEmpty(response.Content))
-        {
-            Console.WriteLine($"Response content?: {response.Content}");
-        }
-
-
-
         if (response.IsSuccessful)
         {
             this.HttpStatusCode = response.StatusCode;
@@ -44,7 +33,8 @@ public class FACAPIResponse<T>
 
             if (!string.IsNullOrEmpty(response.Content))
             {
-                Data = JsonSerializer.Deserialize<T>(response.Content);
+                Data = JsonConvert.DeserializeObject<T>(response.Content);
+
             }
         }
         else
@@ -60,12 +50,14 @@ public class FACAPIResponse<T>
     private void CalculateColumns(string? content)
     {
         if (string.IsNullOrEmpty(content)) return;
-        var evalValues = JsonSerializer.Deserialize<IList<IDictionary<string, string>>>(content);
+        
+        var evalValues = JsonConvert.DeserializeObject<T>(content);
 
-        if (evalValues != null)
+        if (evalValues != null && evalValues.GetType() == typeof(IList<IDictionary<string, string>>))
         {
-            ResultColumnCount = evalValues[0].Keys.Count;
+            ResultColumnCount = ((IList<IDictionary<string, string>>)evalValues)[0].Keys.Count;
         }
+      
     }
     
 }

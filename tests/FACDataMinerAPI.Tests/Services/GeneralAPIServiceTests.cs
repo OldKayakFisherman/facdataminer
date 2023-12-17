@@ -36,4 +36,20 @@ public class GeneralAPIServiceTests
             Assert.That(response.Data, Is.Not.Null);
         });
     }
+
+    [Test]
+    public async Task TestGetNewAudits()
+    {
+        var service = new GeneralAPIService();
+
+        StandardAPIServiceArguments args = TestHelpers.CreateStandardApiTestApiServiceArguments();
+        
+        IList<string> auditReportIds = new List<string>() { "2023-06-GSAFAC-0000000002", "2023-06-GSAFAC-0000000087" };
+
+        IList<IDictionary<string, string>> results = await service.GetNewAudits(auditReportIds, 1, args);
+        
+        Assert.That(results.Count, Is.EqualTo(2));
+        
+    }
+    
 }

@@ -20,4 +20,6 @@ public class GeneralRecordRepository: BaseRepository<GeneralRecord>, IBaseReposi
             .Select(x => x.ReportId).ToListAsync();
     }
     
+    
+    
 }
