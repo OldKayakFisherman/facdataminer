@@ -16,7 +16,7 @@ public class GeneralAPIService: BaseAPIService
         return await base.PerformRequest<IList<IDictionary<string, string>>>(apiEndpoint, args);
     }
     
-    public async Task<IList<IDictionary<string, string>>> GetNewAudits(IList<string> reportIds,
+    public async Task<IList<IDictionary<string, string>>> GetNewRecords(IList<string> reportIds,
         int batchPullSize,
         StandardAPIServiceArguments args)
     {

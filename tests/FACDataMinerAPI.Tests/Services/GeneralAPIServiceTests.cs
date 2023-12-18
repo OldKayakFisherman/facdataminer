@@ -38,7 +38,7 @@ public class GeneralAPIServiceTests
     }
 
     [Test]
-    public async Task TestGetNewAudits()
+    public async Task TestGetNewRecords()
     {
         var service = new GeneralAPIService();
 
@@ -46,7 +46,7 @@ public class GeneralAPIServiceTests
         
         IList<string> auditReportIds = new List<string>() { "2023-06-GSAFAC-0000000002", "2023-06-GSAFAC-0000000087" };
 
-        IList<IDictionary<string, string>> results = await service.GetNewAudits(auditReportIds, 1, args);
+        IList<IDictionary<string, string>> results = await service.GetNewRecords(auditReportIds, 1, args);
         
         Assert.That(results.Count, Is.EqualTo(2));
         
