@@ -9,9 +9,9 @@ public static class StringHelpers
         return string.IsNullOrEmpty(source) ? null : source;
     }
 
-    public static DateTime? ToDateTimeOrNullValue(this string source)
+    public static DateTime? ToDateTimeOrNullValue(this string source, string format)
     {
-        return string.IsNullOrEmpty(source) ? null : DateTime.Parse(source);
+        return string.IsNullOrEmpty(source) ? null : DateTime.ParseExact(source, format, null);
     }
     
     public static bool? ToBooleanOrNullValue(this string source)

@@ -15,11 +15,11 @@ public class StringHelperTests
     [Test]
     public void TestToDateTimeOrNullValue()
     {
-        Assert.That("3-10-2021".ToDateTimeOrNullValue(), Is.Not.Null);
-        Assert.That("3-10-2021".ToDateTimeOrNullValue()!.Value.Day, Is.EqualTo(10));
-        Assert.That("3-10-2021".ToDateTimeOrNullValue()!.Value.Month, Is.EqualTo(3));
-        Assert.That("3-10-2021".ToDateTimeOrNullValue()!.Value.Year, Is.EqualTo(2021));
-        Assert.That("".ToDateTimeOrNullValue(), Is.Null);
+        Assert.That("2023-10-19".ToDateTimeOrNullValue("yyyy-MM-dd"), Is.Not.Null);
+        Assert.That("2023-10-19".ToDateTimeOrNullValue("yyyy-MM-dd")!.Value.Day, Is.EqualTo(19));
+        Assert.That("2023-10-19".ToDateTimeOrNullValue("yyyy-MM-dd")!.Value.Month, Is.EqualTo(10));
+        Assert.That("2023-10-19".ToDateTimeOrNullValue("yyyy-MM-dd")!.Value.Year, Is.EqualTo(2023));
+        Assert.That("".ToDateTimeOrNullValue("yyyy-MM-dd"), Is.Null);
     }
     
     [Test]

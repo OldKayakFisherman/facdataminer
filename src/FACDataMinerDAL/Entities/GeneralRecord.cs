@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using FACDataMiner.Utilities.Extensions;
 
 namespace FACDataMinerDAL.Entities;
 
@@ -189,41 +190,39 @@ public class GeneralRecord: IBaseFACRecord
     public GeneralRecord(IDictionary<string, string> record)
     {
 
-        ReportId = record["report_id"];
-        AuditeeUEI = record["auditee_uei"];
+        ReportId = record["report_id"].ToStringOrNullValue();
+        AuditeeUEI = record["auditee_uei"].ToStringOrNullValue();
         AuditYear = int.Parse(record["audit_year"]);
-        AuditeeCertifyName = record["auditee_certify_name"];
-        AuditeeCertifyTitle = record["auditee_certify_title"];
-        AuditeeContactName = record["auditee_contact_name"];
-        AuditeeEmail = record["auditee_email"];
-        AuditeeName = record["auditee_name"];
-        AuditeePhone = record["auditee_phone"];
-        AuditeeContactTitle = record["auditee_contact_title"];
-        AuditeeAddressLine1 = record["auditee_address_line_1"];
-        AuditeeCity = record["auditee_city"];
-        AuditeeState = record["auditee_state"];
-        AuditeeEIN = record["auditee_ein"];
-        AuditeeZip = record["auditee_zip"];
-        AuditorPhone = record["auditor_phone"];
-        AuditorState = record["auditor_state"];
-        AuditorCity = record["auditor_city"];
-        AuditorContactTitle = record["auditor_contact_title"];
-        AuditorAddressLine1 = record["auditor_address_line_1"];
-        AuditorZip = record["auditor_zip"];
-        AuditorCountry = record["auditor_country"];
-        AuditorContactName = record["auditor_contact_name"];
-        AuditorEmail = record["auditor_email"];
-        AuditorFirmName = record["auditor_firm_name"];
-        AuditorForeignAddress = record["auditor_foreign_address"];
-        AuditorEIN = record["auditor_ein"];
-        CognizantAgency = record["cognizant_agency"];
-        OversightAgency = record["oversight_agency"];
-        DateCreated = string.IsNullOrEmpty(record["date_created"]) ? null : DateTime.Parse(record["date_created"]);
+        AuditeeCertifyName = record["auditee_certify_name"].ToStringOrNullValue();
+        AuditeeCertifyTitle = record["auditee_certify_title"].ToStringOrNullValue();
+        AuditeeContactName = record["auditee_contact_name"].ToStringOrNullValue();
+        AuditeeEmail = record["auditee_email"].ToStringOrNullValue();
+        AuditeeName = record["auditee_name"].ToStringOrNullValue();
+        AuditeePhone = record["auditee_phone"].ToStringOrNullValue();
+        AuditeeContactTitle = record["auditee_contact_title"].ToStringOrNullValue();
+        AuditeeAddressLine1 = record["auditee_address_line_1"].ToStringOrNullValue();
+        AuditeeCity = record["auditee_city"].ToStringOrNullValue();
+        AuditeeState = record["auditee_state"].ToStringOrNullValue();
+        AuditeeEIN = record["auditee_ein"].ToStringOrNullValue();
+        AuditeeZip = record["auditee_zip"].ToStringOrNullValue();
+        AuditorPhone = record["auditor_phone"].ToStringOrNullValue();
+        AuditorState = record["auditor_state"].ToStringOrNullValue();
+        AuditorCity = record["auditor_city"].ToStringOrNullValue();
+        AuditorContactTitle = record["auditor_contact_title"].ToStringOrNullValue();
+        AuditorAddressLine1 = record["auditor_address_line_1"].ToStringOrNullValue();
+        AuditorZip = record["auditor_zip"].ToStringOrNullValue();
+        AuditorCountry = record["auditor_country"].ToStringOrNullValue();
+        AuditorContactName = record["auditor_contact_name"].ToStringOrNullValue();
+        AuditorEmail = record["auditor_email"].ToStringOrNullValue();
+        AuditorFirmName = record["auditor_firm_name"].ToStringOrNullValue();
+        AuditorForeignAddress = record["auditor_foreign_address"].ToStringOrNullValue();
+        AuditorEIN = record["auditor_ein"].ToStringOrNullValue();
+        CognizantAgency = record["cognizant_agency"].ToStringOrNullValue();
+        OversightAgency = record["oversight_agency"].ToStringOrNullValue();
+        DateCreated = record["date_created"].ToDateTimeOrNullValue("yyyy-MM-dd");
+        ReadyForCertificationDate = record["ready_for_certification_date"].ToDateTimeOrNullValue("yyyy-MM-dd");
 
         /*
-
-           "date_created": "2023-10-19",
-           "ready_for_certification_date": "2023-10-19",
            "auditor_certified_date": "2023-10-19",
            "auditee_certified_date": "2023-10-19",
            "submitted_date": "2023-10-19",

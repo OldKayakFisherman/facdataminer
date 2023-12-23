@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using FACDataMiner.Utilities.Extensions;
 
 namespace FACDataMinerDAL.Entities;
 
@@ -36,10 +37,10 @@ public class AdditionalUEIRecord: IBaseFACRecord
     public AdditionalUEIRecord(IDictionary<string, string> value)
     {
 
-        ReportId = value["report_id"];
-        AuditeeUEI = value["auditee_uei"];
+        ReportId = value["report_id"].ToStringOrNullValue();
+        AuditeeUEI = value["auditee_uei"].ToStringOrNullValue();
         AuditYear = int.Parse(value["audit_year"]);
-        AdditionalUEI = value["additional_uei"];
+        AdditionalUEI = value["additional_uei"].ToStringOrNullValue();
         
     }
     
