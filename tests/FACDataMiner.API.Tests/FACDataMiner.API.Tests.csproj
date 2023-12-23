@@ -8,6 +8,7 @@
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
         <UserSecretsId>254678f6-2868-45ca-a486-ac76ea82867b</UserSecretsId>
+        <RootNamespace>FACDataMinerAPI.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

@@ -32,4 +32,15 @@ public class AdditionalUEIRecord: IBaseFACRecord
     {
         AuditYear = DateTime.Now.Year;
     }
+
+    public AdditionalUEIRecord(IDictionary<string, string> value)
+    {
+
+        ReportId = value["report_id"];
+        AuditeeUEI = value["auditee_uei"];
+        AuditYear = int.Parse(value["audit_year"]);
+        AdditionalUEI = value["additional_uei"];
+        
+    }
+    
 }

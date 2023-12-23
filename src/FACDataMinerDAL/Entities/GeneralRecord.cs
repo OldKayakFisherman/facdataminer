@@ -185,5 +185,75 @@ public class GeneralRecord: IBaseFACRecord
         this.AuditYear = auditYear;
         this.AuditeeUEI = auditeeUEI;
     }
+
+    public GeneralRecord(IDictionary<string, string> record)
+    {
+
+        ReportId = record["report_id"];
+        AuditeeUEI = record["auditee_uei"];
+        AuditYear = int.Parse(record["audit_year"]);
+        AuditeeCertifyName = record["auditee_certify_name"];
+        AuditeeCertifyTitle = record["auditee_certify_title"];
+        AuditeeContactName = record["auditee_contact_name"];
+        AuditeeEmail = record["auditee_email"];
+        AuditeeName = record["auditee_name"];
+        AuditeePhone = record["auditee_phone"];
+        AuditeeContactTitle = record["auditee_contact_title"];
+        AuditeeAddressLine1 = record["auditee_address_line_1"];
+        AuditeeCity = record["auditee_city"];
+        AuditeeState = record["auditee_state"];
+        AuditeeEIN = record["auditee_ein"];
+        AuditeeZip = record["auditee_zip"];
+        AuditorPhone = record["auditor_phone"];
+        AuditorState = record["auditor_state"];
+        AuditorCity = record["auditor_city"];
+        AuditorContactTitle = record["auditor_contact_title"];
+        AuditorAddressLine1 = record["auditor_address_line_1"];
+        AuditorZip = record["auditor_zip"];
+        AuditorCountry = record["auditor_country"];
+        AuditorContactName = record["auditor_contact_name"];
+        AuditorEmail = record["auditor_email"];
+        AuditorFirmName = record["auditor_firm_name"];
+        AuditorForeignAddress = record["auditor_foreign_address"];
+        AuditorEIN = record["auditor_ein"];
+        CognizantAgency = record["cognizant_agency"];
+        OversightAgency = record["oversight_agency"];
+        DateCreated = string.IsNullOrEmpty(record["date_created"]) ? null : DateTime.Parse(record["date_created"]);
+
+        /*
+
+           "date_created": "2023-10-19",
+           "ready_for_certification_date": "2023-10-19",
+           "auditor_certified_date": "2023-10-19",
+           "auditee_certified_date": "2023-10-19",
+           "submitted_date": "2023-10-19",
+           "fac_accepted_date": "2023-10-19",
+           "fy_end_date": "2023-01-01",
+           "fy_start_date": "2022-01-01",
+           "audit_type": "single-audit",
+           "gaap_results": "unmodified_opinion",
+           "sp_framework_basis": "",
+           "is_sp_framework_required": "",
+           "sp_framework_opinions": "",
+           "is_going_concern_included": "No",
+           "is_internal_control_deficiency_disclosed": "No",
+           "is_internal_control_material_weakness_disclosed": "No",
+           "is_material_noncompliance_disclosed": "No",
+           "dollar_threshold": 750000,
+           "is_low_risk_auditee": "Yes",
+           "agencies_with_prior_findings": "08",
+           "entity_type": "state",
+           "number_months": "",
+           "audit_period_covered": "annual",
+           "total_amount_expended": 2753685,
+           "type_audit_code": "UG",
+           "is_public": true,
+           "data_source": "GSAFAC",
+           "is_aicpa_audit_guide_included": "No",
+           "is_additional_ueis": "No",
+           "is_multiple_eins": "No",
+           "is_secondary_auditors": "No"
+         */
+    }
     
 }
