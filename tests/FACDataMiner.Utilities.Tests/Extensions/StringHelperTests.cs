@@ -42,6 +42,13 @@ public class StringHelperTests
         Assert.That("14".ToIntOrNullValue(), Is.EqualTo(14));
         Assert.That("".ToIntOrNullValue(), Is.Null);
     }
+
+    [Test]
+    public void TestToShortOrNullValue()
+    {
+        Assert.That("2".ToIntOrNullValue(), Is.EqualTo(2));
+        Assert.That("".ToIntOrNullValue(), Is.Null);
+    }
     
     [Test]
     public void TestToDecimalOrNullValue()

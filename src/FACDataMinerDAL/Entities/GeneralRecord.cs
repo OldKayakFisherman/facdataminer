@@ -133,28 +133,28 @@ public class GeneralRecord: IBaseFACRecord
     public string? SpecialFrameworkBasis { get; set; }
     
     [Column("is_sp_framework_required")]
-    public bool IsSpecialFrameworkRequired { get; set; }
+    public bool? IsSpecialFrameworkRequired { get; set; }
 
     [Column("sp_framework_opinions")]
     public string? SpecialFrameworkOpinions { get; set; }
 
     [Column("is_going_concern_included")]
-    public bool IsGoingConcernIncluded { get; set; }
+    public bool? IsGoingConcernIncluded { get; set; }
 
     [Column("is_internal_control_deficiency_disclosed")]
-    public bool IsInternalControlDeficiencyDisclosed { get; set; }
+    public bool? IsInternalControlDeficiencyDisclosed { get; set; }
 
     [Column("is_internal_material_weakness_disclosed")]
-    public bool IsInternalMaterialWeaknessDisclosed { get; set; }
+    public bool? IsInternalMaterialWeaknessDisclosed { get; set; }
 
     [Column("is_internal_material_noncompliance_disclosed")]
-    public bool IsInternalMaterialNonComplianceDisclosed { get; set; }
+    public bool? IsMaterialNonComplianceDisclosed { get; set; }
     
     [Column("dollar_threshold")]
     public decimal? DollarThreshold { get; set; }
     
     [Column("is_low_risk_auditee")]
-    public bool IsLowRiskAuditee { get; set; }
+    public bool? IsLowRiskAuditee { get; set; }
     
     [Column("agencies_with_prior_findings")]
     public string? AgenciesWithPriorFindings { get; set; }
@@ -163,7 +163,7 @@ public class GeneralRecord: IBaseFACRecord
     public string? EntityType { get; set; }
     
     [Column("number_months")]
-    public short NumberOfMonths { get; set; }
+    public short? NumberOfMonths { get; set; }
     
     [Column("audit_period_covered")]
     public string? AuditPeriodCovered { get; set; }
@@ -175,11 +175,25 @@ public class GeneralRecord: IBaseFACRecord
     public string? TypeAuditCode { get; set; }
     
     [Column("is_public")]
-    public bool IsPublic { get; set; }
+    public bool? IsPublic { get; set; }
     
     [Column("data_source")]
     public string? DataSource { get; set; }
-    
+
+    [Column("is_aicpa_audit_guide_included")]
+    public bool? IsAICPAAuditGuideIncluded { get; set; }
+
+
+    [Column("is_additional_ueis")]
+    public bool? IsAdditionalUEIs { get; set; }
+
+    [Column("is_multiple_eins")] 
+    public bool? IsMultipleEINs { get; set; }
+
+    [Column("is_secondary_auditors")]
+    public bool? IsSecondaryAuditors { get; set; }
+
+
     public GeneralRecord(string reportId, int auditYear, string auditeeUEI)
     {
         this.ReportId = reportId;
@@ -221,38 +235,37 @@ public class GeneralRecord: IBaseFACRecord
         OversightAgency = record["oversight_agency"].ToStringOrNullValue();
         DateCreated = record["date_created"].ToDateTimeOrNullValue("yyyy-MM-dd");
         ReadyForCertificationDate = record["ready_for_certification_date"].ToDateTimeOrNullValue("yyyy-MM-dd");
-
-        /*
-           "auditor_certified_date": "2023-10-19",
-           "auditee_certified_date": "2023-10-19",
-           "submitted_date": "2023-10-19",
-           "fac_accepted_date": "2023-10-19",
-           "fy_end_date": "2023-01-01",
-           "fy_start_date": "2022-01-01",
-           "audit_type": "single-audit",
-           "gaap_results": "unmodified_opinion",
-           "sp_framework_basis": "",
-           "is_sp_framework_required": "",
-           "sp_framework_opinions": "",
-           "is_going_concern_included": "No",
-           "is_internal_control_deficiency_disclosed": "No",
-           "is_internal_control_material_weakness_disclosed": "No",
-           "is_material_noncompliance_disclosed": "No",
-           "dollar_threshold": 750000,
-           "is_low_risk_auditee": "Yes",
-           "agencies_with_prior_findings": "08",
-           "entity_type": "state",
-           "number_months": "",
-           "audit_period_covered": "annual",
-           "total_amount_expended": 2753685,
-           "type_audit_code": "UG",
-           "is_public": true,
-           "data_source": "GSAFAC",
-           "is_aicpa_audit_guide_included": "No",
-           "is_additional_ueis": "No",
-           "is_multiple_eins": "No",
-           "is_secondary_auditors": "No"
-         */
+        AuditorCertificationDate = record["auditor_certified_date"].ToDateTimeOrNullValue("yyyy-MM-dd");
+        AuditeeCertificationDate = record["auditee_certified_date"].ToDateTimeOrNullValue("yyyy-MM-dd");
+        SubmittedDate = record["submitted_date"].ToDateTimeOrNullValue("yyyy-MM-dd");
+        FACAcceptedDate = record["fac_accepted_date"].ToDateTimeOrNullValue("yyyy-MM-dd");
+        FYEndDate = record["fy_end_date"].ToDateTimeOrNullValue("yyyy-MM-dd");
+        FYStartDate = record["fy_start_date"].ToDateTimeOrNullValue("yyyy-MM-dd");
+        AuditType = record["audit_type"].ToStringOrNullValue();
+        GAAPResults = record["gaap_results"].ToStringOrNullValue();
+        SpecialFrameworkBasis = record["sp_framework_basis"].ToStringOrNullValue();
+        IsSpecialFrameworkRequired = record["is_sp_framework_required"].ToBooleanOrNullValue();
+        SpecialFrameworkOpinions = record["sp_framework_opinions"].ToStringOrNullValue();
+        IsGoingConcernIncluded = record["is_going_concern_included"].ToBooleanOrNullValue();
+        IsInternalControlDeficiencyDisclosed = record["is_internal_control_deficiency_disclosed"].ToBooleanOrNullValue();
+        IsInternalMaterialWeaknessDisclosed = record["is_internal_control_material_weakness_disclosed"].ToBooleanOrNullValue();
+        IsMaterialNonComplianceDisclosed = record["is_material_noncompliance_disclosed"].ToBooleanOrNullValue();
+        DollarThreshold = record["dollar_threshold"].ToDecimalOrNullValue();
+        IsLowRiskAuditee = record["is_low_risk_auditee"].ToBooleanOrNullValue();
+        AgenciesWithPriorFindings = record["agencies_with_prior_findings"].ToStringOrNullValue();
+        EntityType = record["entity_type"].ToStringOrNullValue();
+        NumberOfMonths = record["number_months"].ToShortOrNullValue();
+        AuditPeriodCovered = record["audit_period_covered"].ToStringOrNullValue();
+        TotalAmountExpended = record["total_amount_expended"].ToDecimalOrNullValue();
+        TypeAuditCode = record["type_audit_code"].ToStringOrNullValue();
+        IsPublic = record["is_public"].ToBooleanOrNullValue();
+        DataSource = record["data_source"].ToStringOrNullValue();
+        IsAICPAAuditGuideIncluded = record["is_low_risk_auditee"].ToBooleanOrNullValue();
+        IsAdditionalUEIs = record["is_additional_ueis"].ToBooleanOrNullValue();
+        IsMultipleEINs = record["is_multiple_eins"].ToBooleanOrNullValue();
+        IsSecondaryAuditors = record["is_secondary_auditors"].ToBooleanOrNullValue();
+        
+       
     }
     
 }

@@ -13,6 +13,11 @@ public static class StringHelpers
     {
         return string.IsNullOrEmpty(source) ? null : DateTime.ParseExact(source, format, null);
     }
+
+    public static short? ToShortOrNullValue(this string source)
+    {
+        return string.IsNullOrEmpty(source) ? null : short.Parse(source);        
+    }
     
     public static bool? ToBooleanOrNullValue(this string source)
     {
