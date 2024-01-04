@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using FACDataMiner.Utilities.Extensions;
 
 namespace FACDataMinerDAL.Entities;
 
@@ -22,7 +23,7 @@ public class CorrectiveActionPlanRecord: IBaseFACRecord
     public string? FindingReferenceNumber { get; set; }
 
     [Column("contains_chart_or_table")] 
-    public bool ContainsChartsOrTables { get; set; }
+    public bool? ContainsChartsOrTables { get; set; }
     
     [Column("planned_action")] 
     public string? PlannedAction { get; set; }
@@ -34,5 +35,17 @@ public class CorrectiveActionPlanRecord: IBaseFACRecord
         this.AuditYear = auditYear;
         this.AuditeeUEI = auditeeUEI;
     }
+
+    public CorrectiveActionPlanRecord(IDictionary<string, string> record)
+    {
+        ReportId = record["report_id"].ToStringOrNullValue();
+        AuditeeUEI = record["auditee_uei"].ToStringOrNullValue();
+        AuditYear = int.Parse(record["audit_year"]);
+        FindingReferenceNumber = record["finding_ref_number"].ToStringOrNullValue();
+        ContainsChartsOrTables = record["contains_chart_or_table"].ToBooleanOrNullValue();
+        PlannedAction = record["planned_action"].ToStringOrNullValue();
+    }
+    
+    
     
 }

@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using FACDataMiner.Utilities.Extensions;
 
 namespace FACDataMinerDAL.Entities;
 
@@ -52,16 +53,16 @@ public class AwardRecord: IBaseFACRecord
     public decimal? FederalProgramTotal { get; set; }
     
     [Column("is_major")]
-    public bool IsMajor { get; set; }
+    public bool? IsMajor { get; set; }
 
     [Column("is_loan")]
-    public bool IsLoan { get; set; }
+    public bool? IsLoan { get; set; }
     
     [Column("loan_balance")]
     public decimal? LoanBalance { get; set; }
     
     [Column("is_direct")]
-    public bool IsDirect { get; set; }
+    public bool? IsDirect { get; set; }
     
     [Column("audit_report_type")]
     public string? AuditReportType { get; set; }
@@ -70,7 +71,7 @@ public class AwardRecord: IBaseFACRecord
     public int? FindingsCount { get; set; }
     
     [Column("is_passthrough_award")]
-    public bool IsPassthroughAward { get; set; }
+    public bool? IsPassthroughAward { get; set; }
     
     [Column("passthrough_amount")]
     public decimal? PassthroughAmount { get; set; }
@@ -81,6 +82,34 @@ public class AwardRecord: IBaseFACRecord
         this.ReportId = reportId;
         this.AuditYear = auditYear;
         this.AuditeeUEI = auditeeUEI;
+    }
+
+    public AwardRecord(IDictionary<string, string> record)
+    {
+        ReportId = record["report_id"].ToStringOrNullValue();
+        AuditeeUEI = record["auditee_uei"].ToStringOrNullValue();
+        AuditYear = int.Parse(record["audit_year"]);
+        AwardReference = record["award_reference"].ToStringOrNullValue();
+        FederalAgencyPrefix = record["federal_agency_prefix"].ToStringOrNullValue();
+        FederalAgencyExtension = record["federal_award_extension"].ToStringOrNullValue();
+        AdditionalAwardIdentification = record["additional_award_identification"].ToStringOrNullValue();
+        FederalProgramName = record["federal_program_name"].ToStringOrNullValue();
+        AmountExpended = record["amount_expended"].ToDecimalOrNullValue();
+        ClusterName = record["cluster_name"].ToStringOrNullValue();
+        OtherClusterName = record["other_cluster_name"].ToStringOrNullValue();
+        StateClusterName = record["state_cluster_name"].ToStringOrNullValue();
+        ClusterTotal = record["cluster_total"].ToDecimalOrNullValue();
+        FederalProgramTotal= record["federal_program_total"].ToDecimalOrNullValue();
+        IsMajor = record["is_major"].ToBooleanOrNullValue();
+        IsLoan = record["is_loan"].ToBooleanOrNullValue();
+        LoanBalance = record["loan_balance"].ToDecimalOrNullValue();
+        IsLoan = record["is_direct"].ToBooleanOrNullValue();
+        AuditReportType = record["audit_report_type"].ToStringOrNullValue();
+        FindingsCount = record["findings_count"].ToIntOrNullValue();
+        IsPassthroughAward = record["is_major"].ToBooleanOrNullValue();
+        PassthroughAmount = record["passthrough_amount"].ToDecimalOrNullValue();
+       
+        
     }
     
 }
