@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using FACDataMiner.Utilities.Extensions;
 
 namespace FACDataMinerDAL.Entities;
 
@@ -22,10 +23,10 @@ public class FindingTextRecord: IBaseFACRecord
     public string? FindingReferenceNumber { get; set; }
 
     [Column("contains_chart_or_table")] 
-    public bool ContainsChartsOrTables { get; set; }
+    public bool? ContainsChartsOrTables { get; set; }
     
     [Column("finding_text")] 
-    public string? findingText { get; set; }
+    public string? FindingText { get; set; }
 
 
     public FindingTextRecord(string reportId, int auditYear, string auditeeUEI)
@@ -33,5 +34,16 @@ public class FindingTextRecord: IBaseFACRecord
         this.ReportId = reportId;
         this.AuditYear = auditYear;
         this.AuditeeUEI = auditeeUEI;
+    }
+
+    public FindingTextRecord(IDictionary<string, string> record)
+    {
+        ReportId = record["report_id"].ToStringOrNullValue();
+        AuditeeUEI = record["auditee_uei"].ToStringOrNullValue();
+        AuditYear = int.Parse(record["audit_year"]);
+        FindingReferenceNumber = record["finding_ref_number"].ToStringOrNullValue();
+        ContainsChartsOrTables = record["contains_chart_or_table"].ToBooleanOrNullValue();
+        FindingText = record["finding_text"].ToStringOrNullValue();
+        
     }
 }

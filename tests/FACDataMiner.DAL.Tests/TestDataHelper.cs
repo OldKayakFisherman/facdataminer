@@ -217,7 +217,7 @@ public class TestDataHelper
                     generalRecord.AuditeeUEI
                 ))
                 .RuleFor(r => r.FindingReferenceNumber, f => f.Random.AlphaNumeric(10))
-                .RuleFor(r => r.findingText, f => f.Random.Words(40));
+                .RuleFor(r => r.FindingText, f => f.Random.Words(40));
             
             
             result.Add(record);
