@@ -1,7 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using FACDataMiner.Utilities.Extensions;
 namespace FACDataMinerDAL.Entities;
+
 
 [Table("passthroughs")]
 public class PassthroughRecord: IBaseFACRecord
@@ -32,5 +33,15 @@ public class PassthroughRecord: IBaseFACRecord
         this.ReportId = reportId;
         this.AuditYear = auditYear;
         this.AuditeeUEI = auditeeUEI;
-    }   
+    }
+
+    public PassthroughRecord(IDictionary<string, string> record)
+    {
+        ReportId = record["report_id"].ToStringOrNullValue();
+        AuditeeUEI = record["auditee_uei"].ToStringOrNullValue();
+        AuditYear = int.Parse(record["audit_year"]);
+        
+        
+    }
+    
 }

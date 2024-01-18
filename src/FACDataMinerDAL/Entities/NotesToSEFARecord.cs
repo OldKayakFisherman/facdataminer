@@ -31,8 +31,11 @@ public class NotesToSEFARecord: IBaseFACRecord
     [Column("rate_explained")] 
     public string? RateExplained { get; set; }
     
+    [Column("content")] 
+    public string? Content { get; set; }
+    
     [Column("contains_chart_or_table")] 
-    public bool ContainsChartsOrTables { get; set; }
+    public bool? ContainsChartsOrTables { get; set; }
 
 
     public NotesToSEFARecord(string reportId, int auditYear, string auditeeUEI)
@@ -52,15 +55,8 @@ public class NotesToSEFARecord: IBaseFACRecord
         AccountingPolicies = record["accounting_policies"].ToStringOrNullValue();
         IsMinimisRateUsed = record["is_minimis_rate_used"].ToBooleanOrNullValue();
         RateExplained = record["rate_explained"].ToStringOrNullValue();
-
-        /*
-          {
-
-
-                  "rate_explained": "AHC elects to use the 10 percent de minimus indirect cost rate as allowed under the Uniform Guidance.",
-                  "content": "COMMUNITY FACILITIES LOANS AND GRANTS (10.766) - BALANCES OUTSTANDING AT THE END OF THE AUDIT PERIOD WERE 1278135",
-                  "contains_chart_or_table": "N"
-              },
-         */
+        Content = record["content"].ToStringOrNullValue();
+        ContainsChartsOrTables = record["contains_chart_or_table"].ToBooleanOrNullValue();
+        
     }
 }
