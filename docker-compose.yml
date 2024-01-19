@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+
+  db:
+    image: postgres:15.1
+    container_name: facdata-postgres
+    ports:
+      - "5432:5432"
+    env_file:
+      - .pgsql-env
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+    volumes:
+      - ./db-data/:/var/lib/postgresql/data/
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
