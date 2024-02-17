@@ -6,6 +6,6 @@ public class SecondaryAuditorsAPIService: BaseAPIService
         int batchPullSize,
         StandardAPIServiceArguments args)
     {
-        return await PerformBatchRequest("general", batchPullSize, reportIds, args);
+        return await PerformBatchRequest("secondary_auditors", batchPullSize, reportIds, args);
     }    
 }

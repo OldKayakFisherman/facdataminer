@@ -9,6 +9,7 @@
     <ItemGroup>
       <PackageReference Include="morelinq" Version="4.1.0" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+      <PackageReference Include="NLog" Version="5.2.8" />
       <PackageReference Include="RestSharp" Version="110.2.0" />
     </ItemGroup>
 
