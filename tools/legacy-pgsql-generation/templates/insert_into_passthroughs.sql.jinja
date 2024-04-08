@@ -1,0 +1,18 @@
+INSERT INTO census_passthrough
+(
+    DBKEY,
+    AUDITYEAR,
+    ELECAUDITSID,
+    PASSTHROUGHNAME,
+    PASSTHROUGHID
+)
+VALUES(
+    {{DBKEY}},--DBKEY
+    {{AUDITYEAR}},--AUDITYEAR
+    {% if ELECAUDITSID  is ne '' %}{{ELECAUDITSID}}{% else %}NULL{% endif %},--ELECAUDITSID
+    {% if PASSTHROUGHNAME  is ne '' %}'{{PASSTHROUGHNAME}}'{% else %}NULL{% endif %},--PASSTHROUGHNAME
+    {% if PASSTHROUGHID  is ne '' %}'{{PASSTHROUGHID}}'{% else %}NULL{% endif %}--PASSTHROUGHID
+);
+
+
+

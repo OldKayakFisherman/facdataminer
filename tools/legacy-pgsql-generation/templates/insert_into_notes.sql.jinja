@@ -1,0 +1,31 @@
+INSERT INTO census_notes
+(
+    ID,
+    REPORTID,
+    VERSION,
+    AUDITYEAR,
+    DBKEY,
+    SEQ_NUMBER,
+    TYPE_ID,
+    NOTE_INDEX,
+    TITLE,
+    CONTENT
+)
+VALUES
+(
+    {% if ID is ne '' %}{{ID}}{% else %}NULL{% endif %},--ID
+    {% if REPORTID is ne '' %}{{REPORTID}}{% else %}NULL{% endif %},--REPORTID
+    {% if VERSION is ne '' %}{{VERSION}}{% else %}NULL{% endif %},--VERSION
+    {{AUDITYEAR}},--AUDITYEAR
+    {{DBKEY}},--DBKEY
+    {% if SEQ_NUMBER is ne '' %}{{SEQ_NUMBER}}{% else %}NULL{% endif %},--SEQ_NUMBER
+    {% if TYPE_ID is ne '' %}{{TYPE_ID}}{% else %}NULL{% endif %},--TYPE_ID
+    {% if NOTE_INDEX is ne '' %}{{NOTE_INDEX}}{% else %}NULL{% endif %},--NOTE_INDEX
+    {% if TITLE is ne '' %}'{{TITLE|replace("'","''")|safe}}'{% else %}NULL{% endif %},--TITLE
+    {% if CONTENT is ne '' %}'{{CONTENT|replace("'","''")|safe}}'{% else %}NULL{% endif %},--CONTENT
+);
+
+
+
+
+

@@ -1,0 +1,34 @@
+INSERT INTO census_cpas
+(
+    DBKEY,
+    AUDITYEAR,
+    CPAFIRMNAME,
+    CPAEIN,
+    CPASTREET1,
+    CPACITY,
+    CPASTATE,
+    CPAZIPCODE,
+    CPACONTACT,
+    CPATITLE,
+    CPAPHONE,
+    CPAFAX,
+    CPAEMAIL
+)
+VALUES
+(
+    {{DBKEY}}, --DBKEY
+    {{AUDITYEAR}}, --AUDITYEAR
+    {% if CPAFIRMNAME  is ne '' %}'{{CPAFIRMNAME}}'{% else %}NULL{% endif %}, --CPAFIRMNAME
+    {% if CPAEIN  is ne '' %}'{{CPAEIN}}'{% else %}NULL{% endif %}, --CPAEIN
+    {% if CPASTREET1  is ne '' %}'{{CPASTREET1}}'{% else %}NULL{% endif %}, --CPASTREET1
+    {% if CPACITY  is ne '' %}'{{CPACITY}}'{% else %}NULL{% endif %}, --CPACITY
+    {% if CPASTATE  is ne '' %}'{{CPASTATE}}'{% else %}NULL{% endif %}, --CPASTATE
+    {% if CPAZIPCODE  is ne '' %}'{{CPAZIPCODE}}'{% else %}NULL{% endif %}, --CPAZIPCODE
+    {% if CPACONTACT  is ne '' %}'{{CPACONTACT}}'{% else %}NULL{% endif %}, --CPACONTACT
+    {% if CPATITLE  is ne '' %}'{{CPATITLE}}'{% else %}NULL{% endif %}, --CPATITLE
+    {% if CPAPHONE  is ne '' %}'{{CPAPHONE}}'{% else %}NULL{% endif %}, --CPAPHONE
+    {% if CAPTEXT  is ne '' %}'{{CPAFAX}}'{% else %}NULL{% endif %}, --CPAFAX
+    {% if CPAEMAIL  is ne '' %}'{{CPAEMAIL}}'{% else %}NULL{% endif %} --CPAEMAIL
+);
+
+

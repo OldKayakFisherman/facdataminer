@@ -1,0 +1,15 @@
+INSERT INTO census_agencies
+(
+    AUDITYEAR,
+    DBKEY,
+    EIN,
+    AGENCY
+)
+VALUES
+(
+    {{AUDITYEAR}},--AUDITYEAR
+    {{DBKEY}},--DBKEY
+    {% if EIN  is ne '' %}'{{EIN}}'{% else %}NULL{% endif %},--EIN
+    {% if AGENCY  is ne '' %}'{{EIN}}'{% else %}NULL{% endif %} --AGENCY
+);
+

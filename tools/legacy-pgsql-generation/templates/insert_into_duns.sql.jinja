@@ -1,0 +1,17 @@
+INSERT INTO census_duns
+(
+    AUDITYEAR,
+    DBKEY,
+    DUNS,
+    DUNSEQNUM
+)
+VALUES
+(
+    {{AUDITYEAR}}, --AUDITYEAR
+    {{DBKEY}}, --DBKEY
+    {% if DUNS is ne '' %}'{{DUNS}}'{% else %}NULL{% endif %}, --DUNS
+    {% if DUNSEQNUM is ne '' %}{{DUNSEQNUM}}{% else %}NULL{% endif %} --DUNSEQNUM
+);
+
+
+

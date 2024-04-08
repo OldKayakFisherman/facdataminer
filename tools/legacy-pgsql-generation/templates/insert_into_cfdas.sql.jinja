@@ -1,0 +1,61 @@
+INSERT INTO census_cfdas
+(
+    AUDITYEAR,
+    DBKEY,
+    EIN,
+    CFDA,
+    AWARDIDENTIFICATION,
+    RD,
+    FEDERALPROGRAMNAME,
+    AMOUNT,
+    CLUSTERNAME,
+    STATECLUSTERNAME,
+    PROGRAMTOTAL,
+    CLUSTERTOTAL,
+    DIRECT,
+    PASSTHROUGHAWARD,
+    PASSTHROUGHAMOUNT,
+    MAJORPROGRAM,
+    TYPEREPORT_MP,
+    TYPEREQUIREMENT,
+    QCOSTS2,
+    FINDINGS,
+    FINDINGREFNUMS,
+    ARRA,
+    LOANS,
+    LOANBALANCE,
+    FINDINGSCOUNT,
+    ELECAUDITSID
+)
+VALUES
+(
+    {{AUDITYEAR}},--AUDITYEAR
+    {{DBKEY}},--DBKEY
+    {% if EIN  is ne '' %}'{{EIN}}'{% else %}NULL{% endif %},--EIN
+    '{{CFDA}}',--CFDA
+    {% if AWARDIDENTIFICATION is ne '' %}'{{AWARDIDENTIFICATION}}'{% else %}NULL{% endif %},--AWARDIDENTIFICATION
+    {% if RD is ne '' %}'{{RD}}'{% else %}NULL{% endif %},--RD
+    '{{FEDERALPROGRAMNAME}}',--FEDERALPROGRAMNAME
+    {{AMOUNT}},--AMOUNT
+    {% if CLUSTERNAME is ne '' %}'{{CLUSTERNAME}}'{% else %}NULL{% endif %},--CLUSTERNAME,
+    {% if STATECLUSTERNAME is ne '' %}'{{STATECLUSTERNAME}}'{% else %}NULL{% endif %},--STATECLUSTERNAME
+    {% if PROGRAMTOTAL is ne '' %}{{PROGRAMTOTAL}}{% else %}NULL{% endif %},--PROGRAMTOTAL
+    {% if CLUSTERTOTAL is ne '' %}{{CLUSTERTOTAL}}{% else %}NULL{% endif %},--CLUSTERTOTAL
+    {% if DIRECT is ne '' %}'{{DIRECT}}'{% else %}NULL{% endif %},--DIRECT
+    {% if PASSTHROUGHAWARD is ne '' %}'{{PASSTHROUGHAWARD}}'{% else %}NULL{% endif %},--PASSTHROUGHAWARD
+    {% if PASSTHROUGHAMOUNT is ne '' %}{{PASSTHROUGHAMOUNT}}{% else %}NULL{% endif %},--PASSTHROUGHAMOUNT
+    {% if MAJORPROGRAM is ne '' %}'{{MAJORPROGRAM}}'{% else %}NULL{% endif %},--MAJORPROGRAM
+    {% if TYPEREPORT_MP is ne '' %}'{{TYPEREPORT_MP}}'{% else %}NULL{% endif %},--TYPEREPORT_MP
+    {% if TYPEREQUIREMENT is ne '' %}'{{TYPEREQUIREMENT}}'{% else %}NULL{% endif %},--TYPEREQUIREMENT
+    {% if QCOSTS2 is ne '' %}'{{QCOSTS2}}'{% else %}NULL{% endif %},--QCOSTS2
+    {% if FINDINGS is ne '' %}'{{FINDINGS}}'{% else %}NULL{% endif %},--FINDINGS
+    {% if FINDINGREFNUMS is ne '' %}'{{FINDINGREFNUMS}}'{% else %}NULL{% endif %},--FINDINGREFNUMS
+    {% if ARRA is ne '' %}'{{ARRA}}'{% else %}NULL{% endif %},--ARRA
+    {% if LOANS is ne '' %}'{{LOANS}}'{% else %}NULL{% endif %},--LOANS
+    {% if LOANBALANCE is ne '' %}{{LOANBALANCE}}{% else %}NULL{% endif %},--LOANBALANCE
+    {% if FINDINGSCOUNT is ne '' %}{{FINDINGSCOUNT}}{% else %}NULL{% endif %},--FINDINGSCOUNT
+    {{ELECAUDITSID}},--ELECAUDITSID
+);
+
+
+

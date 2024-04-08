@@ -1,0 +1,18 @@
+INSERT INTO census_eins
+(
+    AUDITYEAR,
+    DBKEY,
+    EIN,
+    EINSEQNUM    
+)
+VALUES
+(
+    {{AUDITYEAR}}, --AUDITYEAR
+    {{DBKEY}}, --DBKEY
+    {% if EIN is ne '' %}'{{EIN}}'{% else %}NULL{% endif %}, --EIN
+    {% if EINSEQNUM is ne '' %}{{EINSEQNUM}}{% else %}NULL{% endif %} --EINSEQNUM
+);
+
+
+
+

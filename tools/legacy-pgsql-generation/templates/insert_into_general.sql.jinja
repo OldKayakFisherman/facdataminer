@@ -1,0 +1,132 @@
+INSERT INTO census_general
+(
+    AUDITYEAR,
+    DBKEY,
+    TYPEOFENTITY,
+    FYENDDATE,
+    AUDITTYPE,
+    PERIODCOVERED,
+    NUMBERMONTHS,
+    EIN,
+    MULTIPLEEINS,
+    EINSUBCODE,
+    DUNS,
+    MULTIPLEDUNS,
+    AUDITEENAME,
+    STREET1,
+    STREET2,
+    CITY,
+    STATE,
+    ZIPCODE,
+    AUDITEECONTACT,
+    AUDITEETITLE,
+    AUDITEEPHONE,
+    AUDITEEFAX,
+    AUDITEEEMAIL,
+    AUDITEEDATESIGNED,
+    AUDITEENAMETITLE,
+    CPAFIRMNAME,
+    CPASTREET1,
+    CPASTREET2,
+    CPACITY,
+    CPASTATE,
+    CPAZIPCODE,
+    CPACONTACT,
+    CPATITLE,
+    CPAPHONE,
+    CPAFAX,
+    CPAEMAIL,
+    CPADATESIGNED,
+    COG_OVER,
+    COGAGENCY,
+    OVERSIGHTAGENCY,
+    TYPEREPORT_FS,
+    SP_FRAMEWORK,
+    SP_FRAMEWORK_REQUIRED,
+    TYPEREPORT_SP_FRAMEWORK,
+    GOINGCONCERN,
+    REPORTABLECONDITION,
+    MATERIALWEAKNESS,
+    MATERIALNONCOMPLIANCE,
+    TYPEREPORT_MP,
+    DUP_REPORTS,
+    DOLLARTHRESHOLD,
+    LOWRISK,
+    REPORTABLECONDITION_MP,
+    MATERIALWEAKNESS_MP,
+    QCOSTS,
+    CYFINDINGS,
+    PYSCHEDULE,
+    TOTFEDEXPEND,
+    DATEFIREWALL,
+    PREVIOUSDATEFIREWALL,
+    REPORTREQUIRED,
+    MULTIPLE_CPAS
+)
+VALUES
+(
+    {{AUDITYEAR}}, --AUDITYEAR
+    {{DBKEY}}, --DBKEY
+    {% if TYPEOFENTITY is ne '' %}'{{TYPEOFENTITY}}'{% else %}NULL{% endif %}, --TYPEOFENTITY
+    {% if FYENDDATE is ne '' %}'{{FYENDDATE}}'{% else %}NULL{% endif %}, --FYENDDATE
+    {% if AUDITTYPE is ne '' %}'{{AUDITTYPE}}'{% else %}NULL{% endif %}, --AUDITTYPE
+    {% if PERIODCOVERED is ne '' %}'{{PERIODCOVERED}}'{% else %}NULL{% endif %}, --PERIODCOVERED
+    {% if NUMBERMONTHS is ne '' %}'{{NUMBERMONTHS}}'{% else %}NULL{% endif %}, --NUMBERMONTHS
+    {% if EIN is ne '' %}'{{EIN}}'{% else %}NULL{% endif %}, --EIN
+    {% if MULTIPLEEINS is ne '' %}'{{MULTIPLEEINS}}'{% else %}NULL{% endif %}, --MULTIPLEEINS
+    {% if EINSUBCODE is ne '' %}'{{EINSUBCODE}}'{% else %}NULL{% endif %}, --EINSUBCODE
+    {% if DUNS is ne '' %}'{{DUNS}}'{% else %}NULL{% endif %}, --DUNS
+    {% if MULTIPLEDUNS is ne '' %}'{{MULTIPLEDUNS}}'{% else %}NULL{% endif %}, --MULTIPLEDUNS
+    {% if AUDITEENAME is ne '' %}'{{STATE}}'{% else %}NULL{% endif %}, --AUDITEENAME
+    {% if STREET1 is ne '' %}'{{STREET1}}'{% else %}NULL{% endif %}, --STREET1
+    {% if STREET2 is ne '' %}'{{STREET2}}'{% else %}NULL{% endif %}, --STREET2
+    {% if CITY is ne '' %}'{{CITY}}'{% else %}NULL{% endif %}, --CITY
+    {% if STATE is ne '' %}'{{STATE}}'{% else %}NULL{% endif %}, --STATE
+    {% if ZIPCODE is ne '' %}'{{ZIPCODE}}'{% else %}NULL{% endif %}, --ZIPCODE
+    {% if AUDITEECONTACT is ne '' %}'{{AUDITEECONTACT}}'{% else %}NULL{% endif %}, --AUDITEECONTACT
+    {% if AUDITEETITLE is ne '' %}'{{AUDITEETITLE}}'{% else %}NULL{% endif %}, --AUDITEETITLE
+    {% if AUDITEEPHONE is ne '' %}'{{AUDITEEPHONE}}'{% else %}NULL{% endif %}, --AUDITEEPHONE
+    {% if AUDITEEFAX is ne '' %}'{{AUDITEEFAX}}'{% else %}NULL{% endif %}, --AUDITEEFAX
+    {% if AUDITEEEMAIL is ne '' %}'{{AUDITEEEMAIL}}'{% else %}NULL{% endif %}, --AUDITEEEMAIL
+    {% if AUDITEEDATESIGNED is ne '' %}'{{AUDITEEDATESIGNED}}'{% else %}NULL{% endif %}, --AUDITEEDATESIGNED
+    {% if AUDITEENAMETITLE is ne '' %}'{{AUDITEENAMETITLE}}'{% else %}NULL{% endif %}, --AUDITEENAMETITLE
+    {% if CPAFIRMNAME is ne '' %}'{{CPAFIRMNAME}}'{% else %}NULL{% endif %}, --CPAFIRMNAME
+    {% if CPASTREET1 is ne '' %}'{{CPASTREET1}}'{% else %}NULL{% endif %}, --CPASTREET1
+    {% if CPASTREET2 is ne '' %}'{{CPASTREET2}}'{% else %}NULL{% endif %}, --CPASTREET2
+    {% if CPACITY is ne '' %}'{{CPACITY}}'{% else %}NULL{% endif %}, --CPACITY
+    {% if CPASTATE is ne '' %}'{{CPASTATE}}'{% else %}NULL{% endif %}, --CPASTATE
+    {% if CPAZIPCODE is ne '' %}'{{CPAZIPCODE}}'{% else %}NULL{% endif %}, --CPAZIPCODE
+    {% if CPACONTACT is ne '' %}'{{CPACONTACT}}'{% else %}NULL{% endif %}, --CPACONTACT
+    {% if CPATITLE is ne '' %}'{{CPATITLE}}'{% else %}NULL{% endif %}, --CPATITLE
+    {% if CPAPHONE is ne '' %}'{{CPAPHONE}}'{% else %}NULL{% endif %}, --CPAPHONE
+    {% if CPAFAX is ne '' %}'{{CPAFAX}}'{% else %}NULL{% endif %}, --CPAFAX
+    {% if CPAEMAIL is ne '' %}'{{CPAEMAIL}}'{% else %}NULL{% endif %}, --CPAEMAIL
+    {% if CPADATESIGNED is ne '' %}'{{CPADATESIGNED}}'{% else %}NULL{% endif %}, --CPADATESIGNED
+    {% if COG_OVER is ne '' %}'{{COG_OVER}}'{% else %}NULL{% endif %}, --COG_OVER
+    {% if COGAGENCY is ne '' %}'{{COGAGENCY}}'{% else %}NULL{% endif %}, --COGAGENCY
+    {% if OVERSIGHTAGENCY is ne '' %}'{{OVERSIGHTAGENCY}}'{% else %}NULL{% endif %}, --OVERSIGHTAGENCY
+    {% if TYPEREPORT_FS is ne '' %}'{{TYPEREPORT_FS}}'{% else %}NULL{% endif %}, --TYPEREPORT_FS
+    {% if SP_FRAMEWORK is ne '' %}'{{SP_FRAMEWORK}}'{% else %}NULL{% endif %}, --SP_FRAMEWORK
+    {% if SP_FRAMEWORK_REQUIRED is ne '' %}'{{SP_FRAMEWORK_REQUIRED}}'{% else %}NULL{% endif %}, --SP_FRAMEWORK_REQUIRED
+    {% if TYPEREPORT_SP_FRAMEWORK is ne '' %}'{{TYPEREPORT_SP_FRAMEWORK}}'{% else %}NULL{% endif %}, --TYPEREPORT_SP_FRAMEWORK
+    {% if GOINGCONCERN is ne '' %}'{{GOINGCONCERN}}'{% else %}NULL{% endif %}, --GOINGCONCERN
+    {% if REPORTABLECONDITION is ne '' %}'{{REPORTABLECONDITION}}'{% else %}NULL{% endif %}, --REPORTABLECONDITION
+    {% if MATERIALWEAKNESS is ne '' %}'{{MATERIALWEAKNESS}}'{% else %}NULL{% endif %}, --MATERIALWEAKNESS
+    {% if MATERIALNONCOMPLIANCE is ne '' %}'{{MATERIALNONCOMPLIANCE}}'{% else %}NULL{% endif %}, --MATERIALNONCOMPLIANCE
+    {% if TYPEREPORT_MP is ne '' %}'{{TYPEREPORT_MP}}'{% else %}NULL{% endif %}, --TYPEREPORT_MP
+    {% if DUP_REPORTS is ne '' %}'{{DUP_REPORTS}}'{% else %}NULL{% endif %}, --DUP_REPORTS
+    {% if DOLLARTHRESHOLD is ne '' %}{{DOLLARTHRESHOLD}}{% else %}NULL{% endif %}, --DOLLARTHRESHOLD
+    {% if LOWRISK is ne '' %}'{{LOWRISK}}'{% else %}NULL{% endif %}, --LOWRISK
+    {% if REPORTABLECONDITION_MP is ne '' %}'{{REPORTABLECONDITION_MP}}'{% else %}NULL{% endif %}, --REPORTABLECONDITION_MP
+    {% if MATERIALWEAKNESS_MP is ne '' %}'{{MATERIALWEAKNESS_MP}}'{% else %}NULL{% endif %}, --MATERIALWEAKNESS_MP
+    {% if QCOSTS is ne '' %}'{{QCOSTS}}'{% else %}NULL{% endif %}, --QCOSTS
+    {% if CYFINDINGS is ne '' %}'{{CYFINDINGS}}'{% else %}NULL{% endif %}, --CYFINDINGS
+    {% if PYSCHEDULE is ne '' %}'{{PYSCHEDULE}}'{% else %}NULL{% endif %}, --PYSCHEDULE
+    {% if TOTFEDEXPEND is ne '' %}{{TOTFEDEXPEND}}{% else %}NULL{% endif %}, --TOTFEDEXPEND
+    {% if DATEFIREWALL is ne '' %}'{{DATEFIREWALL}}'{% else %}NULL{% endif %}, --DATEFIREWALL
+    {% if PREVIOUSDATEFIREWALL is ne '' %}'{{PREVIOUSDATEFIREWALL}}'{% else %}NULL{% endif %}, --PREVIOUSDATEFIREWALL
+    {% if REPORTREQUIRED is ne '' %}'{{REPORTREQUIRED}}'{% else %}NULL{% endif %}, --REPORTREQUIRED
+    {% if MULTIPLE_CPAS is ne '' %}'{{MULTIPLE_CPAS}}'{% else %}NULL{% endif %} --MULTIPLE_CPAS
+);
+
+
