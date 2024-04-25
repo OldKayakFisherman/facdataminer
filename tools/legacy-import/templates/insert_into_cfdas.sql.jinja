@@ -49,10 +49,10 @@ VALUES
     {% if TYPEREQUIREMENT is ne '' %}'{{TYPEREQUIREMENT}}'{% else %}NULL{% endif %},--TYPEREQUIREMENT
     {% if QCOSTS2 is ne '' %}'{{QCOSTS2}}'{% else %}NULL{% endif %},--QCOSTS2
     {% if FINDINGS is ne '' %}'{{FINDINGS}}'{% else %}NULL{% endif %},--FINDINGS
-    {% if FINDINGREFNUMS is ne '' %}'{{FINDINGREFNUMS|replace("'","''")|safe}}}}'{% else %}NULL{% endif %},--FINDINGREFNUMS
-    {% if ARRA is ne '' %}'{{ARRA|replace("\"","")|safe}}}}'{% else %}NULL{% endif %},--ARRA
+    {% if FINDINGREFNUMS is ne '' %}'{{FINDINGREFNUMS|replace("'","''")|safe}}'{% else %}NULL{% endif %},--FINDINGREFNUMS
+    {% if ARRA is ne '' %}'{{ARRA|replace("\"","")|safe}}'{% else %}NULL{% endif %},--ARRA
     {% if LOANS is ne '' %}'{{LOANS}}'{% else %}NULL{% endif %},--LOANS
-    {% if LOANBALANCE is ne '' %}{{LOANBALANCE}}{% else %}NULL{% endif %},--LOANBALANCE
+    {% if LOANBALANCE is ne '' %}'{{LOANBALANCE}}'{% else %}NULL{% endif %},--LOANBALANCE
     {% if FINDINGSCOUNT is ne '' %}{{FINDINGSCOUNT}}{% else %}NULL{% endif %},--FINDINGSCOUNT
     {{ELECAUDITSID}}--ELECAUDITSID
 );

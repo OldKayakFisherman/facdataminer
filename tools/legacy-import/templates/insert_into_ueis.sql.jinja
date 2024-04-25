@@ -1,0 +1,15 @@
+INSERT INTO census_ueis
+(
+    AUDITYEAR,
+    DBKEY,
+    UEI,
+    UEISEQNUM    
+)
+VALUES
+(
+    {{AUDITYEAR}}, --AUDITYEAR
+    {{DBKEY}}, --DBKEY
+    {% if UEI is ne '' %}'{{UEI}}'{% else %}NULL{% endif %}, --UEI
+    {% if UEISEQNUM is ne '' %}'{{UEISEQNUM}}'{% else %}NULL{% endif %} --UEISEQNUM
+);
+

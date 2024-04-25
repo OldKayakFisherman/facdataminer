@@ -3,6 +3,8 @@ import os, sys
 import csv
 import json
 import logging
+from jinja2 import Environment, PackageLoader, select_autoescape
+import psycopg2
 
 
 logging.basicConfig(level=logging.INFO)
@@ -12,10 +14,17 @@ load_dotenv()
 SOURCE_PATH = os.getenv("SOURCE.PATH")
 OUTPUT_PATH = os.getenv("OUTPUT.PATH")
 
+dsn = f"""
+    dbname={os.getenv("DB.NAME")} 
+    user={os.getenv("DB.USER")} 
+    password={os.getenv("DB.PASSWORD")} 
+    host={os.getenv("DB.HOST")} 
+    port={os.getenv("DB.PORT")}
+"""
 
 JSON_AGENCY_FILE = os.path.join(OUTPUT_PATH, "agency.json")
 JSON_CAPTEXT_FILE = os.path.join(OUTPUT_PATH, "captext.json")
-JSON_CFDA_FILE = os.path.join(OUTPUT_PATH, "cfda.json")
+#JSON_CFDA_FILE = os.path.join(OUTPUT_PATH, "cfda.json")
 JSON_CPA_FILE = os.path.join(OUTPUT_PATH, "cpas.json")
 JSON_DUNS_FILE = os.path.join(OUTPUT_PATH, "duns.json")
 JSON_EINS_FILE = os.path.join(OUTPUT_PATH, "eins.json")
@@ -40,6 +49,33 @@ CSV_NOTES_FILE = os.path.join(SOURCE_PATH, "notes.csv")
 CSV_PASSTHROUGH_FILE = os.path.join(SOURCE_PATH, "passthrough.csv")
 CSV_REVISION_FILE = os.path.join(SOURCE_PATH, "revisions.csv")
 CSV_UEIS_FILE = os.path.join(SOURCE_PATH, "ueis.csv")
+
+
+env = Environment(
+    loader=PackageLoader("main"),
+    autoescape=select_autoescape()
+)
+
+
+def run_sql_statement(sql_statement):
+
+    cn = psycopg2.connect(dsn)
+    cn.autocommit = True
+
+    with cn.cursor() as cur:
+
+        try:
+            cur.execute(sql_statement)
+        except psycopg2.Error as e:
+            print(f"Encountered error: {e}, logging statement to error log.")
+            log_statement_error(sql_statement)
+            return
+
+def log_statement_error(statement):
+
+    with open("insert-errors.txt", "a") as file:
+        file.write(statement)
+        file.write("\n\n")
 
 
 #set the CSV max size
@@ -88,11 +124,8 @@ def write_json(records, json_filepath):
     with open(json_filepath, "w") as f:
         f.write(json.dumps(records))
         
-
-def parse_cfdas():
-
-    if os.path.exists(JSON_CFDA_FILE):
-        os.remove(JSON_CFDA_FILE)
+"""
+def import_cfdas():
 
     records = []
  
@@ -139,18 +172,30 @@ def parse_cfdas():
                 record["OTHERCLUSTERNAME"]= None
                 record["CFDAPROGRAMNAME"]= None
 
-           
-
             records.append(record)
 
     logging.info(f"Parsed {len(records)} CFDA records")
 
     if records:
-        write_json(records, JSON_CFDA_FILE)
-        records.clear()
 
+        #truncate the table
+        run_sql_statement("TRUNCATE census_cfdas")
 
-def parse_general():
+        for audit_year in reversed(range(1997, 2023)):
+            filtered_records = [x for x in records if int(str(x['AUDITYEAR']).strip()) == audit_year]
+
+            for i, record in enumerate(filtered_records):
+                print(f"Processing statement {i+1} of {len(filtered_records)} for audit year {audit_year}")
+                template = env.get_template("insert_into_cfdas.sql.jinja")
+                run_sql_statement(template.render(record))
+
+            filtered_records.clear()
+
+    records.clear()
+
+"""
+
+def import_general():
     
     if os.path.exists(JSON_GENERAL_FILE):
         os.remove(JSON_GENERAL_FILE)
@@ -252,11 +297,23 @@ def parse_general():
     logging.info(f"Parsed {len(records)} General records")
 
     if records:
-        write_json(records, JSON_GENERAL_FILE)
+        #truncate the table
+        run_sql_statement("TRUNCATE census_general")
+
+        for audit_year in reversed(range(1997, 2023)):
+            filtered_records = [x for x in records if int(str(x['AUDITYEAR']).strip()) == audit_year]
+
+            for i, record in enumerate(filtered_records):
+                print(f"Processing statement {i+1} of {len(filtered_records)} for audit year {audit_year}")
+                template = env.get_template("insert_into_general.sql.jinja")
+                run_sql_statement(template.render(record))
+
+            filtered_records.clear()
+
         records.clear()
 
 
-def parse_agencies():
+def import_agencies():
 
     if os.path.exists(JSON_AGENCY_FILE):
         os.remove(JSON_AGENCY_FILE)
@@ -282,10 +339,23 @@ def parse_agencies():
     logging.info(f"Parsed {len(records)} AGENCY records")
 
     if records:
-        write_json(records, JSON_AGENCY_FILE)
+        #truncate the table
+        run_sql_statement("TRUNCATE census_agencies")
+
+        for audit_year in reversed(range(1997, 2023)):
+            filtered_records = [x for x in records if int(str(x['AUDITYEAR']).strip()) == audit_year]
+
+            for i, record in enumerate(filtered_records):
+                print(f"Processing statement {i+1} of {len(filtered_records)} for audit year {audit_year}")
+                template = env.get_template("insert_into_agencies.sql.jinja")
+                run_sql_statement(template.render(record))
+
+            filtered_records.clear()
+
         records.clear()
 
-def parse_captext():
+
+def import_captext():
 
     if os.path.exists(JSON_CAPTEXT_FILE):
         os.remove(JSON_CAPTEXT_FILE)
@@ -313,10 +383,23 @@ def parse_captext():
     logging.info(f"Parsed {len(records)} CAPTEXT records")
 
     if records:
-        write_json(records, JSON_CAPTEXT_FILE)
+        #truncate the table
+        run_sql_statement("TRUNCATE census_captext")
+
+        for audit_year in reversed(range(1997, 2023)):
+            filtered_records = [x for x in records if int(str(x['AUDITYEAR']).strip()) == audit_year]
+
+            for i, record in enumerate(filtered_records):
+                print(f"Processing statement {i+1} of {len(filtered_records)} for audit year {audit_year}")
+                template = env.get_template("insert_into_captext.sql.jinja")
+                run_sql_statement(template.render(record))
+
+            filtered_records.clear()
+
         records.clear()
 
-def parse_cpas():
+
+def import_cpas():
 
     if os.path.exists(JSON_CPA_FILE):
         os.remove(JSON_CPA_FILE)
@@ -353,11 +436,23 @@ def parse_cpas():
     logging.info(f"Parsed {len(records)} CPAS records")
 
     if records:
-        write_json(records, JSON_CPA_FILE)
+        #truncate the table
+        run_sql_statement("TRUNCATE census_cpas")
+
+        for audit_year in reversed(range(1997, 2023)):
+            filtered_records = [x for x in records if int(str(x['AUDITYEAR']).strip()) == audit_year]
+
+            for i, record in enumerate(filtered_records):
+                print(f"Processing statement {i+1} of {len(filtered_records)} for audit year {audit_year}")
+                template = env.get_template("insert_into_cpas.sql.jinja")
+                run_sql_statement(template.render(record))
+
+            filtered_records.clear()
+
         records.clear()
 
 
-def parse_duns():
+def import_duns():
 
     if os.path.exists(JSON_DUNS_FILE):
         os.remove(JSON_DUNS_FILE)
@@ -384,10 +479,24 @@ def parse_duns():
     logging.info(f"Parsed {len(records)} DUNS records")
 
     if records:
-        write_json(records, JSON_DUNS_FILE)
+        #truncate the table
+        run_sql_statement("TRUNCATE census_duns")
+
+        for audit_year in reversed(range(1997, 2023)):
+            filtered_records = [x for x in records if int(str(x['AUDITYEAR']).strip()) == audit_year]
+
+            for i, record in enumerate(filtered_records):
+                print(f"Processing statement {i+1} of {len(filtered_records)} for audit year {audit_year}")
+                template = env.get_template("insert_into_duns.sql.jinja")
+                run_sql_statement(template.render(record))
+
+            filtered_records.clear()
+
         records.clear()
 
-def parse_eins():
+
+
+def import_eins():
 
     if os.path.exists(JSON_EINS_FILE):
         os.remove(JSON_EINS_FILE)
@@ -413,11 +522,23 @@ def parse_eins():
     logging.info(f"Parsed {len(records)} EINS records")
 
     if records:
-        write_json(records, JSON_EINS_FILE)
+        #truncate the table
+        run_sql_statement("TRUNCATE census_eins")
+
+        for audit_year in reversed(range(1997, 2023)):
+            filtered_records = [x for x in records if int(str(x['AUDITYEAR']).strip()) == audit_year]
+
+            for i, record in enumerate(filtered_records):
+                print(f"Processing statement {i+1} of {len(filtered_records)} for audit year {audit_year}")
+                template = env.get_template("insert_into_eins.sql.jinja")
+                run_sql_statement(template.render(record))
+
+            filtered_records.clear()
+
         records.clear()
 
 
-def parse_findings():
+def import_findings():
 
     if os.path.exists(JSON_FINDINGS_FILE):
         os.remove(JSON_FINDINGS_FILE)
@@ -453,10 +574,23 @@ def parse_findings():
     logging.info(f"Parsed {len(records)} FINDINGS records")
 
     if records:
-        write_json(records, JSON_FINDINGS_FILE)
+        #truncate the table
+        run_sql_statement("TRUNCATE census_findings")
+
+        for audit_year in reversed(range(1997, 2023)):
+            filtered_records = [x for x in records if int(str(x['AUDITYEAR']).strip()) == audit_year]
+
+            for i, record in enumerate(filtered_records):
+                print(f"Processing statement {i+1} of {len(filtered_records)} for audit year {audit_year}")
+                template = env.get_template("insert_into_findings.sql.jinja")
+                run_sql_statement(template.render(record))
+
+            filtered_records.clear()
+
         records.clear()
 
-def parse_findingtext():
+
+def import_findingtext():
 
     if os.path.exists(JSON_FINDINGSTEXT_FILE):
         os.remove(JSON_FINDINGSTEXT_FILE)
@@ -484,10 +618,23 @@ def parse_findingtext():
     logging.info(f"Parsed {len(records)} FINDINGSTEXT records")
 
     if records:
-        write_json(records, JSON_FINDINGSTEXT_FILE)
+        #truncate the table
+        run_sql_statement("TRUNCATE census_findingstext")
+
+        for audit_year in reversed(range(1997, 2023)):
+            filtered_records = [x for x in records if int(str(x['AUDITYEAR']).strip()) == audit_year]
+
+            for i, record in enumerate(filtered_records):
+                print(f"Processing statement {i+1} of {len(filtered_records)} for audit year {audit_year}")
+                template = env.get_template("insert_into_findingstext.sql.jinja")
+                run_sql_statement(template.render(record))
+
+            filtered_records.clear()
+
         records.clear()
 
-def parse_notes():
+
+def import_notes():
 
     if os.path.exists(JSON_NOTES_FILE):
         os.remove(JSON_NOTES_FILE)
@@ -519,11 +666,24 @@ def parse_notes():
     logging.info(f"Parsed {len(records)} NOTES records")
 
     if records:
-        write_json(records, JSON_NOTES_FILE)
+        #truncate the table
+        run_sql_statement("TRUNCATE census_notes")
+
+        for audit_year in reversed(range(1997, 2023)):
+            filtered_records = [x for x in records if int(str(x['AUDITYEAR']).strip()) == audit_year]
+
+            for i, record in enumerate(filtered_records):
+                print(f"Processing statement {i+1} of {len(filtered_records)} for audit year {audit_year}")
+                template = env.get_template("insert_into_notes.sql.jinja")
+                run_sql_statement(template.render(record))
+
+            filtered_records.clear()
+
         records.clear()
 
 
-def parse_passthroughs():
+
+def import_passthroughs():
 
     if os.path.exists(JSON_PASSTHROUGH_FILE):
         os.remove(JSON_PASSTHROUGH_FILE)
@@ -559,10 +719,24 @@ def parse_passthroughs():
     logging.info(f"Parsed {len(records)} PASSTHROUGH records")
 
     if records:
-        write_json(records, JSON_PASSTHROUGH_FILE)
+        #truncate the table
+        run_sql_statement("TRUNCATE census_passthroughs")
+
+        for audit_year in reversed(range(1997, 2023)):
+            filtered_records = [x for x in records if int(str(x['AUDITYEAR']).strip()) == audit_year]
+
+            for i, record in enumerate(filtered_records):
+                print(f"Processing statement {i+1} of {len(filtered_records)} for audit year {audit_year}")
+                template = env.get_template("insert_into_passthroughs.sql.jinja")
+                run_sql_statement(template.render(record))
+
+            filtered_records.clear()
+
         records.clear()
 
-def parse_revisions():
+
+
+def import_revisions():
 
     if os.path.exists(JSON_REVISION_FILE):
         os.remove(JSON_REVISION_FILE)
@@ -608,8 +782,21 @@ def parse_revisions():
     logging.info(f"Parsed {len(records)} REVISIONS records")
 
     if records:
-        write_json(records, JSON_REVISION_FILE)
+        #truncate the table
+        run_sql_statement("TRUNCATE census_revisions")
+
+        for audit_year in reversed(range(1997, 2023)):
+            filtered_records = [x for x in records if int(str(x['AUDITYEAR']).strip()) == audit_year]
+
+            for i, record in enumerate(filtered_records):
+                print(f"Processing statement {i+1} of {len(filtered_records)} for audit year {audit_year}")
+                template = env.get_template("insert_into_revisions.sql.jinja")
+                run_sql_statement(template.render(record))
+
+            filtered_records.clear()
+
         records.clear()
+
 
 
 def parse_ueis():
@@ -638,23 +825,36 @@ def parse_ueis():
     logging.info(f"Parsed {len(records)} UEIS records")
 
     if records:
-        write_json(records, JSON_UEIS_FILE)
+        #truncate the table
+        run_sql_statement("TRUNCATE census_ueis")
+
+        for audit_year in reversed(range(1997, 2023)):
+            filtered_records = [x for x in records if int(str(x['AUDITYEAR']).strip()) == audit_year]
+
+            for i, record in enumerate(filtered_records):
+                print(f"Processing statement {i+1} of {len(filtered_records)} for audit year {audit_year}")
+                template = env.get_template("insert_into_ueis.sql.jinja")
+                run_sql_statement(template.render(record))
+
+            filtered_records.clear()
+
         records.clear()
 
 
+
 if __name__ == "__main__":
-    logging.info("Starting parsing process ...")
-    parse_cfdas()
-    parse_general()
-    parse_agencies()
-    parse_captext()
-    parse_cpas()
-    parse_duns()
-    parse_eins()
-    parse_findings()
-    parse_findingtext()
-    parse_notes()
-    parse_passthroughs()
-    parse_revisions()
-    parse_ueis()
-    logging.info("Finished parsing process ...")
+    logging.info("Starting import process ...")  
+    #import_cfdas()
+    #import_general()
+    import_agencies()
+    #import_captext()
+    #import_cpas()
+    #import_duns()
+    #import_eins()
+    #import_findings()
+    #import_findingtext()
+    #import_notes()
+    #import_passthroughs()
+    #import_revisions()
+    #import_ueis()
+    logging.info("Finished import process ...")

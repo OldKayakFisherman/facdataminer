@@ -1,0 +1,19 @@
+INSERT INTO census_captext
+(
+    SEQ_NUMBER,
+    DBKEY,
+    AUDITYEAR,
+    FINDINGREFNUMS,
+    CAPTEXT,
+    CHARTSTABLES
+)
+VALUES
+(
+    {% if SEQ_NUMBER  is ne '' %}{{SEQ_NUMBER}}{% else %}NULL{% endif %}, --SEQ_NUMBER
+    {{DBKEY}},--DBKEY
+    {{AUDITYEAR}},--AUDITYEAR 
+    {% if FINDINGREFNUMS is ne '' %}'{{FINDINGREFNUMS}}'{% else %}NULL{% endif %},--FINDINGREFNUMS
+    {% if TEXT is ne '' %}'{{TEXT|replace("'","''")|safe}}'{% else %}NULL{% endif %},--CAPTEXT
+    {% if CHARTSTABLES is ne '' %}'{{CHARTSTABLES}}'{% else %}NULL{% endif %} --CHARTSTABLES
+);
+

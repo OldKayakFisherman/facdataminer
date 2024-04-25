@@ -8,6 +8,7 @@
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
         <RootNamespace>FACDataMinderDAL.Tests</RootNamespace>
+        <UserSecretsId>655fa1e9-f8ea-44cb-9db8-f4b511f1b7b4</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>

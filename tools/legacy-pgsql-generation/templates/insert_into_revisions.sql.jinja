@@ -1,0 +1,48 @@
+INSERT INTO census_revisions
+(
+    DBKEY,
+    AUDITYEAR,
+    GENINFO,
+    GENINFO_EXPLAIN,
+    FEDERALAWARDS,
+    FEDERALAWARDS_EXPLAIN,
+    NOTESTOSEFA,
+    NOTESTOSEFA_EXPLAIN,
+    AUDITINFO,
+    AUDITINFO_EXPLAIN,
+    FINDINGS,
+    FINDINGS_EXPLAIN,
+    FINDINGSTEXT,
+    FINDINGSTEXT_EXPLAIN,
+    CAP,
+    CAP_EXPLAIN,
+    OTHER,
+    OTHER_EXPLAIN,
+    ELECRPTREVISIONID
+)
+VALUES
+(
+    {{DBKEY}},--DBKEY
+    {{AUDITYEAR}},--AUDITYEAR
+    {% if GENINFO  is ne '' %}'{{GENINFO}}'{% else %}NULL{% endif %},--GENINFO
+    {% if GENINFO_EXPLAIN  is ne '' %}'{{GENINFO_EXPLAIN|replace("'","''")|safe}}'{% else %}NULL{% endif %},--GENINFO_EXPLAIN
+    {% if FEDERALAWARDS  is ne '' %}'{{FEDERALAWARDS}}'{% else %}NULL{% endif %},--FEDERALAWARDS
+    {% if FEDERALAWARDS_EXPLAIN  is ne '' %}'{{FEDERALAWARDS_EXPLAIN|replace("'","''")|safe}}'{% else %}NULL{% endif %},--FEDERALAWARDS_EXPLAIN
+    {% if NOTESTOSEFA  is ne '' %}'{{NOTESTOSEFA}}'{% else %}NULL{% endif %},--NOTESTOSEFA
+    {% if NOTESTOSEFA_EXPLAIN  is ne '' %}'{{NOTESTOSEFA_EXPLAIN|replace("'","''")|safe}}'{% else %}NULL{% endif %},--NOTESTOSEFA_EXPLAIN
+    {% if AUDITINFO  is ne '' %}'{{AUDITINFO}}'{% else %}NULL{% endif %},--AUDITINFO
+    {% if AUDITINFO_EXPLAIN  is ne '' %}'{{AUDITINFO_EXPLAIN|replace("'","''")|safe}}'{% else %}NULL{% endif %},--AUDITINFO_EXPLAIN
+    {% if FINDINGS  is ne '' %}'{{FINDINGS}}'{% else %}NULL{% endif %},--FINDINGS
+    {% if FINDINGS_EXPLAIN  is ne '' %}'{{FINDINGS_EXPLAIN|replace("'","''")|safe}}'{% else %}NULL{% endif %},--FINDINGS_EXPLAIN
+    {% if FINDINGSTEXT  is ne '' %}'{{FINDINGSTEXT}}'{% else %}NULL{% endif %},--FINDINGSTEXT
+    {% if FINDINGSTEXT_EXPLAIN  is ne '' %}'{{FINDINGSTEXT_EXPLAIN|replace("'","''")|safe}}'{% else %}NULL{% endif %},--FINDINGSTEXT_EXPLAIN
+    {% if CAP  is ne '' %}'{{CAP}}'{% else %}NULL{% endif %},--CAP
+    {% if CAP_EXPLAIN  is ne '' %}'{{CAP_EXPLAIN|replace("'","''")|safe}}'{% else %}NULL{% endif %},--CAP_EXPLAIN
+    {% if OTHER  is ne '' %}'{{OTHER}}'{% else %}NULL{% endif %},--OTHER
+    {% if OTHER_EXPLAIN is ne '' %}'{{OTHER_EXPLAIN|replace("'","''")|safe}}'{% else %}NULL{% endif %},--OTHER_EXPLAIN
+    {% if ELECRPTREVISIONID is ne '' %}{{ELECRPTREVISIONID}}{% else %}NULL{% endif %} --ELECRPTREVISIONID
+);
+
+
+
+

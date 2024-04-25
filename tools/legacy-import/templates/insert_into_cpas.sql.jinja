@@ -18,17 +18,17 @@ VALUES
 (
     {{DBKEY}}, --DBKEY
     {{AUDITYEAR}}, --AUDITYEAR
-    {% if CPAFIRMNAME  is ne '' %}'{{CPAFIRMNAME}}'{% else %}NULL{% endif %}, --CPAFIRMNAME
+    {% if CPAFIRMNAME  is ne '' %}'{{CPAFIRMNAME|replace("'","''")|safe}}'{% else %}NULL{% endif %}, --CPAFIRMNAME
     {% if CPAEIN  is ne '' %}'{{CPAEIN}}'{% else %}NULL{% endif %}, --CPAEIN
-    {% if CPASTREET1  is ne '' %}'{{CPASTREET1}}'{% else %}NULL{% endif %}, --CPASTREET1
-    {% if CPACITY  is ne '' %}'{{CPACITY}}'{% else %}NULL{% endif %}, --CPACITY
+    {% if CPASTREET1  is ne '' %}'{{CPASTREET1|replace("'","''")|safe}}'{% else %}NULL{% endif %}, --CPASTREET1
+    {% if CPACITY  is ne '' %}'{{CPACITY|replace("'","''")|safe}}'{% else %}NULL{% endif %}, --CPACITY
     {% if CPASTATE  is ne '' %}'{{CPASTATE}}'{% else %}NULL{% endif %}, --CPASTATE
     {% if CPAZIPCODE  is ne '' %}'{{CPAZIPCODE}}'{% else %}NULL{% endif %}, --CPAZIPCODE
-    {% if CPACONTACT  is ne '' %}'{{CPACONTACT}}'{% else %}NULL{% endif %}, --CPACONTACT
-    {% if CPATITLE  is ne '' %}'{{CPATITLE}}'{% else %}NULL{% endif %}, --CPATITLE
+    {% if CPACONTACT  is ne '' %}'{{CPACONTACT|replace("'","''")|safe}}'{% else %}NULL{% endif %}, --CPACONTACT
+    {% if CPATITLE  is ne '' %}'{{CPATITLE|replace("'","''")|safe}}'{% else %}NULL{% endif %}, --CPATITLE
     {% if CPAPHONE  is ne '' %}'{{CPAPHONE}}'{% else %}NULL{% endif %}, --CPAPHONE
     {% if CPAFAX  is ne '' %}'{{CPAFAX}}'{% else %}NULL{% endif %}, --CPAFAX
-    {% if CPAEMAIL  is ne '' %}'{{CPAEMAIL}}'{% else %}NULL{% endif %} --CPAEMAIL
+    {% if CPAEMAIL  is ne '' %}'{{CPAEMAIL|replace("'","''")|safe}}'{% else %}NULL{% endif %} --CPAEMAIL
 );
 
 

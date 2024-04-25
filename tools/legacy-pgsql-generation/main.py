@@ -4,6 +4,8 @@ from jinja2 import Environment, PackageLoader, select_autoescape
 from dotenv import load_dotenv
 import os
 import json
+import psycopg2
+
 
 env = Environment(
     loader=PackageLoader("main"),
@@ -17,6 +19,242 @@ BASE_SQL_DIR = os.getenv("BASE.SQL.DIR")
 
 
 LAST_CENSUS_COLLECTION_YEAR = 2022
+
+
+def correct_cfda_data_oddities(record):
+
+    if record['LOANBALANCE'] == 'N/A':
+        record['LOANBALANCE'] = 0
+
+    #special case for eleaudits id 26290134
+    if int(record['DBKEY']) == 146578 and int(record['AUDITYEAR']) == 2016 and \
+        int(record['LOANBALANCE']) == 26290134:
+            record['AWARDIDENTIFICATION'] = 'TITLE I – HOMELESS CHILDREN & YOUTH'
+            record['RD'] = ''
+            record['FEDERALPROGRAMNAME'] = 'EDUCATION FOR HOMELESS CHILDREN AND YOUTH'
+            record['AMOUNT'] = 18795
+            record['CLUSTERNAME'] = 'N/A'
+            record['STATECLUSTERNAME'] = ''
+            record['PROGRAMTOTAL'] = 60568
+            record['CLUSTERTOTAL'] = ''
+            record['DIRECT'] = 'N'
+            record['PASSTHROUGHAWARD'] = 'N'
+            record['PASSTHROUGHAMOUNT'] = 0
+            record['MAJORPROGRAM'] = 'N'
+            record['TYPEREPORT_MP'] = ''
+            record['TYPEREQUIREMENT'] = '' 
+            record['QCOSTS2'] = ''
+            record['FINDINGS'] = ''
+            record['FINDINGREFNUMS'] = ''
+            record['ARRA'] = ''
+            record['LOANS'] = 'N'
+            record['LOANBALANCE'] = 0
+            record['FINDINGSCOUNT'] = 0
+            record['ELECAUDITSID'] = 26290134
+            
+
+    if int(record['DBKEY']) == 146578 and int(record['AUDITYEAR']) == 2016 and \
+        int(record['LOANBALANCE']) == 26290136:
+            record['AWARDIDENTIFICATION'] = 'TITLE I – HOMELESS CHILDREN & YOUTH'
+            record['RD'] = ''
+            record['FEDERALPROGRAMNAME'] = 'EDUCATION FOR HOMELESS CHILDREN AND YOUTH'
+            record['AMOUNT'] = 41773
+            record['CLUSTERNAME'] = 'N/A'
+            record['STATECLUSTERNAME'] = ''
+            record['PROGRAMTOTAL'] = 60568
+            record['CLUSTERTOTAL'] = ''
+            record['DIRECT'] = 'N'
+            record['PASSTHROUGHAWARD'] = 'N'
+            record['PASSTHROUGHAMOUNT'] = 0
+            record['MAJORPROGRAM'] = 'N'
+            record['TYPEREPORT_MP'] = ''
+            record['TYPEREQUIREMENT'] = '' 
+            record['QCOSTS2'] = ''
+            record['FINDINGS'] = ''
+            record['FINDINGREFNUMS'] = ''
+            record['ARRA'] = ''
+            record['LOANS'] = 'N'
+            record['LOANBALANCE'] = 0
+            record['FINDINGSCOUNT'] = 0
+            record['ELECAUDITSID'] = 26290136
+
+    if int(record['DBKEY']) == 146578 and int(record['AUDITYEAR']) == 2016 and \
+        int(record['LOANBALANCE']) == 26290141:
+            record['AWARDIDENTIFICATION'] = 'VOCATIONAL EDUCATION BASIC'
+            record['RD'] = ''
+            record['FEDERALPROGRAMNAME'] = 'CAREER AND TECHNICAL EDUCATION -- BASIC GRANTS TO STATES'
+            record['AMOUNT'] = 2974
+            record['CLUSTERNAME'] = 'N/A'
+            record['STATECLUSTERNAME'] = ''
+            record['PROGRAMTOTAL'] = 64204
+            record['CLUSTERTOTAL'] = ''
+            record['DIRECT'] = 'N'
+            record['PASSTHROUGHAWARD'] = 'N'
+            record['PASSTHROUGHAMOUNT'] = 0
+            record['MAJORPROGRAM'] = 'N'
+            record['TYPEREPORT_MP'] = ''
+            record['TYPEREQUIREMENT'] = '' 
+            record['QCOSTS2'] = ''
+            record['FINDINGS'] = ''
+            record['FINDINGREFNUMS'] = ''
+            record['ARRA'] = ''
+            record['LOANS'] = 'N'
+            record['LOANBALANCE'] = 0
+            record['FINDINGSCOUNT'] = 0
+            record['ELECAUDITSID'] = 26290141
+
+    if int(record['DBKEY']) == 146578 and int(record['AUDITYEAR']) == 2016 and \
+        int(record['LOANBALANCE']) == 26290145:
+            record['AWARDIDENTIFICATION'] = 'VOCATIONAL EDUCATION BASIC'
+            record['RD'] = ''
+            record['FEDERALPROGRAMNAME'] = 'CAREER AND TECHNICAL EDUCATION -- BASIC GRANTS TO STATES'
+            record['AMOUNT'] = 2520
+            record['CLUSTERNAME'] = 'N/A'
+            record['STATECLUSTERNAME'] = ''
+            record['PROGRAMTOTAL'] = 64204
+            record['CLUSTERTOTAL'] = ''
+            record['DIRECT'] = 'N'
+            record['PASSTHROUGHAWARD'] = 'N'
+            record['PASSTHROUGHAMOUNT'] = 0
+            record['MAJORPROGRAM'] = 'N'
+            record['TYPEREPORT_MP'] = ''
+            record['TYPEREQUIREMENT'] = '' 
+            record['QCOSTS2'] = ''
+            record['FINDINGS'] = ''
+            record['FINDINGREFNUMS'] = ''
+            record['ARRA'] = ''
+            record['LOANS'] = 'N'
+            record['LOANBALANCE'] = 0
+            record['FINDINGSCOUNT'] = 0
+            record['ELECAUDITSID'] = 26290145
+
+    if int(record['DBKEY']) == 146578 and int(record['AUDITYEAR']) == 2016 and \
+        int(record['LOANBALANCE']) == 26290147:
+            record['AWARDIDENTIFICATION'] = 'VOCATIONAL EDUCATION BASIC'
+            record['RD'] = ''
+            record['FEDERALPROGRAMNAME'] = 'CAREER AND TECHNICAL EDUCATION -- BASIC GRANTS TO STATES'
+            record['AMOUNT'] = 58710
+            record['CLUSTERNAME'] = 'N/A'
+            record['STATECLUSTERNAME'] = ''
+            record['PROGRAMTOTAL'] = 64204
+            record['CLUSTERTOTAL'] = ''
+            record['DIRECT'] = 'N'
+            record['PASSTHROUGHAWARD'] = 'N'
+            record['PASSTHROUGHAMOUNT'] = 0
+            record['MAJORPROGRAM'] = 'N'
+            record['TYPEREPORT_MP'] = ''
+            record['TYPEREQUIREMENT'] = '' 
+            record['QCOSTS2'] = ''
+            record['FINDINGS'] = ''
+            record['FINDINGREFNUMS'] = ''
+            record['ARRA'] = ''
+            record['LOANS'] = 'N'
+            record['LOANBALANCE'] = 0
+            record['FINDINGSCOUNT'] = 0
+            record['ELECAUDITSID'] = 26290147
+    
+    if int(record['DBKEY']) == 146578 and int(record['AUDITYEAR']) == 2016 and \
+        int(record['LOANBALANCE']) == 26290153:
+            record['AWARDIDENTIFICATION'] = 'TITLE IV-RURAL/LOW INCOME'
+            record['RD'] = ''
+            record['FEDERALPROGRAMNAME'] = 'RURAL EDUCATION'
+            record['AMOUNT'] = 64007
+            record['CLUSTERNAME'] = 'N/A'
+            record['STATECLUSTERNAME'] = ''
+            record['PROGRAMTOTAL'] = 189107
+            record['CLUSTERTOTAL'] = ''
+            record['DIRECT'] = 'N'
+            record['PASSTHROUGHAWARD'] = 'N'
+            record['PASSTHROUGHAMOUNT'] = 0
+            record['MAJORPROGRAM'] = 'N'
+            record['TYPEREPORT_MP'] = ''
+            record['TYPEREQUIREMENT'] = '' 
+            record['QCOSTS2'] = ''
+            record['FINDINGS'] = ''
+            record['FINDINGREFNUMS'] = ''
+            record['ARRA'] = ''
+            record['LOANS'] = 'N'
+            record['LOANBALANCE'] = 0
+            record['FINDINGSCOUNT'] = 0
+            record['ELECAUDITSID'] = 26290153       
+
+    if int(record['DBKEY']) == 146578 and int(record['AUDITYEAR']) == 2016 and \
+        int(record['LOANBALANCE']) == 26290155:
+            record['AWARDIDENTIFICATION'] = 'TITLE IV-RURAL/LOW INCOME'
+            record['RD'] = ''
+            record['FEDERALPROGRAMNAME'] = 'RURAL EDUCATION'
+            record['AMOUNT'] = 125100
+            record['CLUSTERNAME'] = 'N/A'
+            record['STATECLUSTERNAME'] = ''
+            record['PROGRAMTOTAL'] = 189107
+            record['CLUSTERTOTAL'] = ''
+            record['DIRECT'] = 'N'
+            record['PASSTHROUGHAWARD'] = 'N'
+            record['PASSTHROUGHAMOUNT'] = 0
+            record['MAJORPROGRAM'] = 'N'
+            record['TYPEREPORT_MP'] = ''
+            record['TYPEREQUIREMENT'] = '' 
+            record['QCOSTS2'] = ''
+            record['FINDINGS'] = ''
+            record['FINDINGREFNUMS'] = ''
+            record['ARRA'] = ''
+            record['LOANS'] = 'N'
+            record['LOANBALANCE'] = 0
+            record['FINDINGSCOUNT'] = 0
+            record['ELECAUDITSID'] = 26290155       
+
+    if int(record['DBKEY']) == 146578 and int(record['AUDITYEAR']) == 2016 and \
+        int(record['LOANBALANCE']) == 26290159:
+            record['AWARDIDENTIFICATION'] = 'IMPROVING TEACHER QUALITY'
+            record['RD'] = ''
+            record['FEDERALPROGRAMNAME'] = 'IMPROVING TEACHER QUALITY STATE GRANTS'
+            record['AMOUNT'] = 35665
+            record['CLUSTERNAME'] = 'N/A'
+            record['STATECLUSTERNAME'] = ''
+            record['PROGRAMTOTAL'] = 715154
+            record['CLUSTERTOTAL'] = ''
+            record['DIRECT'] = 'N'
+            record['PASSTHROUGHAWARD'] = 'N'
+            record['PASSTHROUGHAMOUNT'] = 0
+            record['MAJORPROGRAM'] = 'N'
+            record['TYPEREPORT_MP'] = ''
+            record['TYPEREQUIREMENT'] = '' 
+            record['QCOSTS2'] = ''
+            record['FINDINGS'] = ''
+            record['FINDINGREFNUMS'] = ''
+            record['ARRA'] = ''
+            record['LOANS'] = 'N'
+            record['LOANBALANCE'] = 0
+            record['FINDINGSCOUNT'] = 0
+            record['ELECAUDITSID'] = 26290159       
+
+    if int(record['DBKEY']) == 146578 and int(record['AUDITYEAR']) == 2016 and \
+        int(record['LOANBALANCE']) == 26290163:
+            record['AWARDIDENTIFICATION'] = 'IMPROVING TEACHER QUALITY'
+            record['RD'] = ''
+            record['FEDERALPROGRAMNAME'] = 'IMPROVING TEACHER QUALITY STATE GRANTS'
+            record['AMOUNT'] = 679489
+            record['CLUSTERNAME'] = 'N/A'
+            record['STATECLUSTERNAME'] = ''
+            record['PROGRAMTOTAL'] = 715154
+            record['CLUSTERTOTAL'] = ''
+            record['DIRECT'] = 'N'
+            record['PASSTHROUGHAWARD'] = 'N'
+            record['PASSTHROUGHAMOUNT'] = 0
+            record['MAJORPROGRAM'] = 'N'
+            record['TYPEREPORT_MP'] = ''
+            record['TYPEREQUIREMENT'] = '' 
+            record['QCOSTS2'] = ''
+            record['FINDINGS'] = ''
+            record['FINDINGREFNUMS'] = ''
+            record['ARRA'] = ''
+            record['LOANS'] = 'N'
+            record['LOANBALANCE'] = 0
+            record['FINDINGSCOUNT'] = 0
+            record['ELECAUDITSID'] = 26290163      
+
+
+    return record
 
 def generate_cfda_statements():
 
@@ -38,6 +276,7 @@ def generate_cfda_statements():
             if filtered_records:
 
                 for record in filtered_records:
+                    record = correct_cfda_data_oddities(record)
                     template = env.get_template("insert_into_cfdas.sql.jinja")
                     sql_statements.append(template.render(record))
 
@@ -351,6 +590,120 @@ def generate_passthroughs():
                 with open(sql_file, 'w') as f:
                     f.writelines(sql_statements)
 
+def generate_revisions():
+
+    records = None
+    
+    with open(os.path.join(JSON_DIR, 'revisions.json')) as f:
+        content = f.read()
+        records = json.loads(content)
+    
+    if records:
+
+        for i in range(1997, 2023):
+            
+            filtered_records = [x for x in records if int(str(x['AUDITYEAR']).strip()) == i]
+
+            sql_statements = []
+
+            if filtered_records:
+
+                for record in filtered_records:
+                    template = env.get_template("insert_into_revisions.sql.jinja")
+                    sql_statements.append(template.render(record))
+
+                sql_file = os.path.join(BASE_SQL_DIR, "revisions" ,f'{i}_revisions_inserts.sql')
+
+                if os.path.exists(sql_file):
+                    os.remove(sql_file)
+
+                with open(sql_file, 'w') as f:
+                    f.writelines(sql_statements)
+
+def generate_ueis():
+
+    records = None
+    
+    with open(os.path.join(JSON_DIR, 'ueis.json')) as f:
+        content = f.read()
+        records = json.loads(content)
+    
+    if records:
+
+        for i in range(1997, 2023):
+            
+            filtered_records = [x for x in records if int(str(x['AUDITYEAR']).strip()) == i]
+
+            sql_statements = []
+
+            if filtered_records:
+
+                for record in filtered_records:
+                    template = env.get_template("insert_into_ueis.sql.jinja")
+                    sql_statements.append(template.render(record))
+
+                sql_file = os.path.join(BASE_SQL_DIR, "ueis" ,f'{i}_ueis_inserts.sql')
+
+                if os.path.exists(sql_file):
+                    os.remove(sql_file)
+
+                with open(sql_file, 'w') as f:
+                    f.writelines(sql_statements)
+
+def check_cfda_statements(year: int):
+
+    records = None
+    
+    with open(os.path.join(JSON_DIR, 'cfda.json')) as f:
+        content = f.read()
+        records = json.loads(content)
+    
+    if records:
+
+        filtered_records = [x for x in records if int(str(x['AUDITYEAR']).strip()) == year]
+
+        sql_statements = []
+
+        if filtered_records:
+
+            for record in filtered_records:
+                template = env.get_template("insert_into_cfdas.sql.jinja")
+                record = correct_cfda_data_oddities(record)
+                sql_statements.append(template.render(record))
+
+
+        dsn = f"""
+            dbname={os.getenv("DB.NAME")} 
+            user={os.getenv("DB.USER")} 
+            password={os.getenv("DB.PASSWORD")} 
+            host={os.getenv("DB.HOST")} 
+            port={os.getenv("DB.PORT")}
+        """
+
+        cn = psycopg2.connect(dsn)
+        cn.autocommit = False
+
+        statement_count = len(sql_statements)
+        statement_counter = 1
+
+        for sql_statement in sql_statements:
+
+            print(f"Analyzing statement { statement_counter} of {statement_count}")
+
+            with cn.cursor() as cur:
+
+                try:
+                    cur.execute(sql_statement)
+                except psycopg2.Error as e:
+                    print(e)
+                    print(sql_statement)
+                    return
+               
+       
+            statement_counter = statement_counter + 1
+
+
+
 if __name__ == "__main__":
     #generate_cfda_statements()
     #generate_general_statements()
@@ -362,4 +715,7 @@ if __name__ == "__main__":
     #generate_findings_statements()
     #generate_findingstext_statements()
     #generate_notes_statements()
-    generate_passthroughs()
+    #generate_passthroughs()
+    #generate_revisions()
+    #generate_ueis()
+    check_cfda_statements(2016)
