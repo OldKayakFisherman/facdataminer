@@ -10,8 +10,8 @@ VALUES(
     {{DBKEY}},--DBKEY
     {{AUDITYEAR}},--AUDITYEAR
     {% if ELECAUDITSID  is ne '' %}{{ELECAUDITSID}}{% else %}NULL{% endif %},--ELECAUDITSID
-    {% if PASSTHROUGHNAME  is ne '' %}'{{PASSTHROUGHNAME}}'{% else %}NULL{% endif %},--PASSTHROUGHNAME
-    {% if PASSTHROUGHID  is ne '' %}'{{PASSTHROUGHID}}'{% else %}NULL{% endif %}--PASSTHROUGHID
+    {% if PASSTHROUGHNAME  is ne '' %}'{{PASSTHROUGHNAME|replace("'","''")|safe}}'{% else %}NULL{% endif %},--PASSTHROUGHNAME
+    {% if PASSTHROUGHID  is ne '' %}'{{PASSTHROUGHID|replace("'","''")|safe}}'{% else %}NULL{% endif %}--PASSTHROUGHID
 );
 
 

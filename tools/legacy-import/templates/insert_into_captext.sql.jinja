@@ -1,6 +1,6 @@
 INSERT INTO census_captext
 (
-    SEQ_NUMBER,
+    SEQNUMBER,
     DBKEY,
     AUDITYEAR,
     FINDINGREFNUMS,
@@ -9,7 +9,7 @@ INSERT INTO census_captext
 )
 VALUES
 (
-    {% if SEQ_NUMBER  is ne '' %}{{SEQ_NUMBER}}{% else %}NULL{% endif %}, --SEQ_NUMBER
+    {% if SEQ_NUMBER  is ne '' %}{{SEQ_NUMBER}}{% else %}NULL{% endif %}, --SEQNUMBER
     {{DBKEY}},--DBKEY
     {{AUDITYEAR}},--AUDITYEAR 
     {% if FINDINGREFNUMS is ne '' %}'{{FINDINGREFNUMS}}'{% else %}NULL{% endif %},--FINDINGREFNUMS

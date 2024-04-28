@@ -799,7 +799,7 @@ def import_revisions():
 
 
 
-def parse_ueis():
+def import_ueis():
 
     if os.path.exists(JSON_UEIS_FILE):
         os.remove(JSON_UEIS_FILE)
@@ -846,7 +846,7 @@ if __name__ == "__main__":
     logging.info("Starting import process ...")  
     #import_cfdas()
     #import_general()
-    import_agencies()
+    #import_agencies()
     #import_captext()
     #import_cpas()
     #import_duns()
@@ -856,5 +856,5 @@ if __name__ == "__main__":
     #import_notes()
     #import_passthroughs()
     #import_revisions()
-    #import_ueis()
+    import_ueis()
     logging.info("Finished import process ...")
