@@ -1,19 +1,3 @@
-create table import_errors(
-  id integer primary key,
-  process text,
-  import_data text,
-  import_date text
-);
-
-create table agencies (
-  id integer primary key,
-  audityear text,
-  dbkey text,
-  ein text,
-  agency text
-);
-
-
 create table public.census_cfdas (
   id integer primary key not null default nextval('census_cfdas_id_seq'::regclass),
   audityear integer not null,
