@@ -110,4 +110,50 @@ class census_general(models.Model):
     cpacountry  = models.CharField
     entity_type  = models.CharField
     uei  = models.CharField
-    multipleueis  = models.CharField
+    multipleueis = models.CharField
+
+class census_agency(models.Model):
+    
+    class Meta:
+        managed = False
+        db_table = "census_agencies"
+
+
+    audityear = models.IntegerField
+    dbkey = models.IntegerField
+    ein = models.CharField
+    agency = models.CharField
+
+
+class census_cpas(models.Model):
+
+    class Meta:
+        managed = False
+        db_table = "census_captext"
+
+    seqnumber  = models.CharField
+    dbkey = models.IntegerField
+    audityear = models.IntegerField
+    findingrefnums  = models.CharField
+    captext  = models.CharField
+    chartstables  = models.CharField
+
+class census_captext(models.Model):
+
+    class Meta:
+        managed = False
+        db_table = "census_cpas"
+
+    dbkey = models.IntegerField
+    audityear = models.IntegerField
+    cpafirmname character varying(70),
+    cpaein character varying(9),
+    cpastreet1 character varying(50),
+    cpacity character varying(30),
+    cpastate character varying(2),
+    cpazipcode character varying(9),
+    cpacontact character varying(50),
+    cpatitle character varying(40),
+    cpaphone character varying(10),
+    cpafax character varying(10),
+    cpaemail character varying(60)
