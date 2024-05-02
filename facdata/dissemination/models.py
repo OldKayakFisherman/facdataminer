@@ -138,7 +138,7 @@ class census_cpas(models.Model):
     captext  = models.CharField
     chartstables  = models.CharField
 
-class census_captext(models.Model):
+class census_cpa(models.Model):
 
     class Meta:
         managed = False
@@ -146,14 +146,214 @@ class census_captext(models.Model):
 
     dbkey = models.IntegerField
     audityear = models.IntegerField
-    cpafirmname character varying(70),
-    cpaein character varying(9),
-    cpastreet1 character varying(50),
-    cpacity character varying(30),
-    cpastate character varying(2),
-    cpazipcode character varying(9),
-    cpacontact character varying(50),
-    cpatitle character varying(40),
-    cpaphone character varying(10),
-    cpafax character varying(10),
-    cpaemail character varying(60)
+    cpafirmname  = models.CharField
+    cpaein  = models.CharField
+    cpastreet1  = models.CharField
+    cpacity  = models.CharField
+    cpastate  = models.CharField
+    cpazipcode  = models.CharField
+    cpacontact  = models.CharField
+    cpatitle  = models.CharField
+    cpaphone  = models.CharField
+    cpafax  = models.CharField
+    cpaemail = models.CharField
+
+
+class census_dun(models.Model):
+
+    class Meta:
+        managed = False
+        db_table = "census_duns"
+
+
+    audityear = models.IntegerField
+    dbkey = models.IntegerField
+    duns = models.CharField
+    dunseqnum = models.CharField
+
+class census_ein(models.Model):
+
+    class Meta:
+        managed = False
+        db_table = "census_eins"
+
+
+    audityear = models.IntegerField
+    dbkey = models.IntegerField
+    ein = models.CharField
+    einseqnum = models.CharField
+
+
+class census_finding(models.Model):
+
+    class Meta:
+        managed = False
+        db_table = "census_findings"
+
+
+    audityear = models.IntegerField
+    dbkey = models.IntegerField
+    elecauditsid = models.IntegerField
+    elecauditfindingsid = models.IntegerField
+    findingsrefnums = models.CharField
+    typerequirement = models.CharField
+    modifiedopinion = models.CharField
+    othernoncompliance = models.CharField
+    materialweakness = models.CharField
+    significantdeficiency = models.CharField
+    otherfindings = models.CharField
+    qcosts = models.CharField
+    repeatfinding = models.CharField
+    priorfindingrefnums = models.CharField
+
+
+class census_findingtext(models.Model):
+
+    class Meta:
+        managed = False
+        db_table = "census_findingstext"
+
+    seqnumber = models.CharField
+    audityear = models.IntegerField
+    dbkey = models.IntegerField
+    findingrefnums = models.CharField
+    findingstext = models.CharField
+    chartstables = models.CharField
+
+
+class census_note(models.Model):
+
+    class Meta:
+        managed = False
+        db_table = "census_notes"
+
+    census_id = models.IntegerField
+    reportid = models.IntegerField
+    version = models.IntegerField
+    audityear = models.IntegerField
+    dbkey = models.IntegerField
+    seq_number = models.IntegerField
+    type_id = models.IntegerField
+    note_index = models.IntegerField
+    title = models.CharField
+    content = models.CharField
+
+
+class census_passthrough(models.Model):
+
+    class Meta:
+        managed = False
+        db_table = "census_passthroughs"
+
+
+    audityear = models.IntegerField
+    dbkey = models.IntegerField
+    elecauditsid = models.IntegerField
+    passthroughname = models.CharField
+    passthroughid = models.CharField
+
+
+class census_revision(models.Model):
+
+    class Meta:
+        managed = False
+        db_table = "census_revisions"
+
+
+    audityear = models.IntegerField
+    dbkey = models.IntegerField
+    geninfo = models.CharField
+    geninfoexplain = models.CharField
+    federalawards = models.CharField
+    federalawardsexplain = models.CharField
+    notestosefa = models.CharField
+    notestosefaexplain = models.CharField
+    auditinfo = models.CharField
+    auditinfoexplain = models.CharField
+    findings = models.CharField
+    findingsexplain = models.CharField
+    findingstext = models.CharField
+    findingstextexplain = models.CharField
+    cap = models.CharField
+    capexplain = models.CharField
+    other = models.CharField
+    otherexplain = models.CharField
+    elecrptrevisionid = models.IntegerField
+
+
+class census_uei(models.Model):
+
+    class Meta:
+        managed = False
+        db_table = "census_ueis"
+
+
+    audityear = models.IntegerField
+    dbkey = models.IntegerField
+    uei = models.CharField
+    ueiseqnum = models.CharField    
+
+
+class gsa_general(models.Model):
+
+    class Meta:
+        managed = True
+        db_table = "gsa_general"
+
+    report_id = models.CharField
+    auditee_uei = models.CharField
+    audit_year = models.SmallIntegerField
+    auditee_certify_name = models.CharField
+    auditee_certify_title = models.CharField
+    auditee_contact_name = models.CharField
+    auditee_email = models.CharField
+    auditee_name = models.CharField
+    auditee_phone = models.CharField
+    auditee_contact_title = models.CharField
+    auditee_address_line_1 = models.CharField
+    auditee_city = models.CharField
+    auditee_state = models.CharField
+    auditee_ein = models.CharField
+    auditee_zip = models.CharField
+    auditor_phone = models.CharField
+    auditor_state = models.CharField
+    auditor_city = models.CharField
+    auditor_contact_title = models.CharField
+    auditor_address_line_1 = models.CharField
+    auditor_zip = models.CharField
+    auditor_country = models.CharField
+    auditor_contact_name = models.CharField
+    auditor_email = models.CharField
+    auditor_firm_name = models.CharField
+    auditor_foreign_address = models.CharField
+    auditor_ein = models.CharField
+    cognizant_agency = models.CharField
+    oversight_agency = models.CharField
+    date_created  = models.DateTimeField
+    ready_for_certification_date = models.DateTimeField
+    auditor_certified_date = models.DateTimeField
+    auditee_certified_date = models.DateTimeField
+    submitted_date = models.DateTimeField
+    fac_accepted_date = models.DateTimeField
+    fy_end_date = models.DateTimeField
+    fy_start_date = models.DateTimeField
+    audit_type  = models.CharField
+    gaap_results  = models.CharField
+    sp_framework_basis  = models.CharField
+    is_sp_framework_required  = models.CharField
+    sp_framework_opinions  = models.CharField
+    is_going_concern_included = models.BooleanField
+    is_internal_control_deficiency_disclosed = models.BooleanField
+    is_internal_control_material_weakness_disclosed = models.BooleanField
+    is_material_noncompliance_disclosed = models.BooleanField
+    dollar_threshold = models.DecimalField
+    is_low_risk_auditee = models.BooleanField
+    agencies_with_prior_findings = models.CharField
+    entity_type = models.CharField
+    number_months = models.CharField
+    audit_period_covered = models.CharField
+    total_amount_expended = models.CharField
+    type_audit_code = models.CharField
+    is_public  = models.BooleanField
+    data_source = models.CharField
+
