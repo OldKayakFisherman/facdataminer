@@ -11,4 +11,3 @@ All are welcome to participate and if your interested in supporting you can alwa
 
 #### Latest Build Status
 
-[![.NET](https://github.com/OldKayakFisherman/facdataminer/actions/workflows/dotnet.yml/badge.svg)](https://github.com/OldKayakFisherman/facdataminer/actions/workflows/dotnet.yml)
