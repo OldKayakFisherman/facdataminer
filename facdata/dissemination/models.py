@@ -362,32 +362,62 @@ class gsa_award(models.Model):
 
     class Meta:
         managed = True
+        db_table = "gsa_awards"
+
+    report_id = models.TextField
+    auditee_uei = models.TextField
+    audit_year = models.SmallIntegerField
+    award_reference = models.TextField
+    federal_agency_prefix = models.TextField
+    federal_award_extension = models.TextField
+    additional_award_identification = models.TextField
+    federal_program_name = models.TextField
+    amount_expended = models.TextField
+    cluster_name = models.TextField
+    other_cluster_name = models.TextField
+    state_cluster_name = models.TextField
+    cluster_total = models.DecimalField
+    federal_program = models.DecimalField
+    is_major  = models.BooleanField
+    is_loan  = models.BooleanField
+    loan_balance  = models.TextField
+    is_direct  = models.BooleanField
+    audit_report_type  = models.TextField
+    findings_count = models.IntegerField
+    is_passthrough_award = models.BooleanField
+    passthrough_amount = models.DecimalField
+
+
+class gsa_corrective_action_plan(models.Model):
+
+    class Meta:
+        managed = True
         db_table = "gsa_award"
 
+    report_id = models.TextField
+    auditee_uei = models.TextField
+    audit_year = models.SmallIntegerField
+    award_reference = models.TextField
+    federal_agency_prefix = models.TextField
+    federal_award_extension = models.TextField
+    additional_award_identification = models.TextField
+    federal_program_name = models.TextField
+    amount_expended = models.TextField
+    cluster_name = models.TextField
+    other_cluster_name = models.TextField
+    state_cluster_name = models.TextField
+    cluster_total = models.DecimalField
+    federal_program = models.DecimalField
+    is_major  = models.BooleanField
+    is_loan  = models.BooleanField
+    loan_balance  = models.TextField
+    is_direct  = models.BooleanField
+    audit_report_type  = models.TextField
+    findings_count = models.IntegerField
+    is_passthrough_award = models.BooleanField
+    passthrough_amount = models.DecimalField
 
 
-    report_id text,
-    auditee_uei text,
-    audit_year smallint,
-    award_reference text,
-    federal_agency_prefix text,
-    federal_award_extension text,
-    additional_award_identification text,
-    federal_program_name text,
-    amount_expended text,
-    cluster_name text,
-    other_cluster_name text,
-    state_cluster_name text,
-    cluster_total money,
-    federal_program_total money,
-    is_major bool,
-    is_loan bool,
-    loan_balance text,
-    is_direct bool,
-    audit_report_type text,
-    findings_count int,
-    is_passthrough_award bool,
-    passthrough_amount money
 
 
 
