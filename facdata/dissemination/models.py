@@ -392,31 +392,14 @@ class gsa_corrective_action_plan(models.Model):
 
     class Meta:
         managed = True
-        db_table = "gsa_award"
+        db_table = "gsa_corrective_action_plans"
 
-    report_id = models.TextField
-    auditee_uei = models.TextField
+    report_id  = models.TextField
+    auditee_uei  = models.TextField
     audit_year = models.SmallIntegerField
-    award_reference = models.TextField
-    federal_agency_prefix = models.TextField
-    federal_award_extension = models.TextField
-    additional_award_identification = models.TextField
-    federal_program_name = models.TextField
-    amount_expended = models.TextField
-    cluster_name = models.TextField
-    other_cluster_name = models.TextField
-    state_cluster_name = models.TextField
-    cluster_total = models.DecimalField
-    federal_program = models.DecimalField
-    is_major  = models.BooleanField
-    is_loan  = models.BooleanField
-    loan_balance  = models.TextField
-    is_direct  = models.BooleanField
-    audit_report_type  = models.TextField
-    findings_count = models.IntegerField
-    is_passthrough_award = models.BooleanField
-    passthrough_amount = models.DecimalField
-
+    finding_ref_number  = models.TextField
+    contains_chart_or_table = models.BooleanField
+    planned_action  = models.TextField
 
 
 
