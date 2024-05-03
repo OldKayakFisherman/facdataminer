@@ -36,7 +36,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'dissemination.apps.DisseminationConfig'
+    'dissemination.apps.DisseminationConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
