@@ -1,5 +1,14 @@
 name: Django CI
 
+env:
+  API_ENDPOINT: ${{ secrets.API_ENDPOINT }} 
+  API_TOKEN: ${{ secrets.API_TOKEN }}
+  DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+  DATABASE_USER: ${{ secrets.DATABASE_USER }}
+  DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+  DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+  DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
+
 on:
   push:
     branches: [ "master" ]

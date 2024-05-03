@@ -82,11 +82,11 @@ WSGI_APPLICATION = 'facdata.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env("DATABASE_NAME") or "",
-        'USER': env("DATABASE_USER") or "",
-        'PASSWORD': env("DATABASE_PASSWORD") or "",
-        'HOST': env("DATABASE_HOST") or "",
-        'PORT': env("DATABASE_PORT") or "",
+        'NAME': env("DATABASE_NAME"),
+        'USER': env("DATABASE_USER"),
+        'PASSWORD': env("DATABASE_PASSWORD"),
+        'HOST': env("DATABASE_HOST"),
+        'PORT': env("DATABASE_PORT"),
     }
 }
 
