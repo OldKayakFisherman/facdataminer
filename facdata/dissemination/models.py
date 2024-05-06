@@ -400,6 +400,7 @@ class gsa_corrective_action_plan(models.Model):
     finding_ref_number  = models.TextField
     contains_chart_or_table = models.BooleanField
     planned_action  = models.TextField
+    
 
 
 
