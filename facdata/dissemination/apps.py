@@ -1,4 +1,4 @@
-from django.apps import AppConfig
+pipfrom django.apps import AppConfig
 
 
 class DisseminationConfig(AppConfig):

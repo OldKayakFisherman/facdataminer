@@ -364,25 +364,25 @@ class gsa_award(models.Model):
         managed = True
         db_table = "gsa_awards"
 
-    report_id = models.TextField
-    auditee_uei = models.TextField
+    report_id = models.CharField
+    auditee_uei = models.CharField
     audit_year = models.SmallIntegerField
-    award_reference = models.TextField
-    federal_agency_prefix = models.TextField
-    federal_award_extension = models.TextField
-    additional_award_identification = models.TextField
-    federal_program_name = models.TextField
-    amount_expended = models.TextField
-    cluster_name = models.TextField
-    other_cluster_name = models.TextField
-    state_cluster_name = models.TextField
+    award_reference = models.CharField
+    federal_agency_prefix = models.CharField
+    federal_award_extension = models.CharField
+    additional_award_identification = models.CharField
+    federal_program_name = models.CharField
+    amount_expended = models.CharField
+    cluster_name = models.CharField
+    other_cluster_name = models.CharField
+    state_cluster_name = models.CharField
     cluster_total = models.DecimalField
     federal_program = models.DecimalField
     is_major  = models.BooleanField
     is_loan  = models.BooleanField
-    loan_balance  = models.TextField
+    loan_balance  = models.CharField
     is_direct  = models.BooleanField
-    audit_report_type  = models.TextField
+    audit_report_type  = models.CharField
     findings_count = models.IntegerField
     is_passthrough_award = models.BooleanField
     passthrough_amount = models.DecimalField
@@ -394,14 +394,111 @@ class gsa_corrective_action_plan(models.Model):
         managed = True
         db_table = "gsa_corrective_action_plans"
 
-    report_id  = models.TextField
-    auditee_uei  = models.TextField
+    report_id  = models.CharField
+    auditee_uei  = models.CharField
     audit_year = models.SmallIntegerField
-    finding_ref_number  = models.TextField
+    finding_ref_number  = models.CharField
     contains_chart_or_table = models.BooleanField
-    planned_action  = models.TextField
-    
+    planned_action  = models.CharField
 
+
+class gsa_finding(models.Model):
+
+    class Meta:
+        managed = True
+        db_table = "gsa_findings"
+
+    report_id =models.CharField
+    auditee_uei =models.CharField
+    audit_year = models.SmallIntegerField
+    award_reference =models.CharField
+    reference_number =models.CharField
+    is_material_weakness = models.BooleanField
+    is_modified_opinion = models.BooleanField
+    is_other_findings = models.BooleanField
+    is_other_matters = models.BooleanField
+    prior_finding_ref_numbers =models.CharField
+    is_questioned_costs = models.BooleanField
+    is_repeat_finding = models.BooleanField
+    is_significant_deficiency = models.BooleanField
+    type_requirement =models.CharField
+
+class gsa_findingtext(models.Model):
+
+    class Meta:
+        managed = True
+        db_table = "gsa_findings_text"
+
+    report_id =models.CharField
+    auditee_uei =models.CharField
+    audit_year = models.SmallIntegerField
+    finding_ref_number =models.CharField
+    contains_chart_or_table =models.CharField
+    finding_text =models.CharField
+
+
+
+class gsa_note_to_sefa(models.Model):
+
+    class Meta:
+        managed = True
+        db_table = "gsa_notes_to_sefa"
+
+    report_id =models.CharField
+    auditee_uei =models.CharField
+    audit_year = models.SmallIntegerField
+    title =models.CharField
+    accounting_policies =models.CharField
+    is_minimis_rate_used = models.BooleanField
+    rate_explained =models.CharField
+    contains_chart_or_table = models.BooleanField
+
+class gsa_passthrough(models.Model):
+
+    class Meta:
+        managed = True
+        db_table = "gsa_passthroughs"
+
+    report_id =models.CharField
+    auditee_uei =models.CharField
+    audit_year = models.SmallIntegerField
+    award_reference =models.CharField
+    passthrough_id =models.CharField
+    passthrough_name =models.CharField
+
+
+
+class gsa_secondary_auditors(models.Model):
+
+    class Meta:
+        managed = True
+        db_table = "gsa_secondary_auditors"
+
+
+    report_id =models.CharField
+    auditee_uei =models.CharField
+    audit_year = models.SmallIntegerField
+    auditor_ein =models.CharField
+    auditor_name =models.CharField
+    contact_name =models.CharField
+    contact_email =models.CharField
+    contact_phone =models.CharField
+    address_street =models.CharField
+    address_city =models.CharField
+    address_state =models.CharField
+    address_zipcode = models.CharField
+
+
+class gsa_additional_uei(models.Model):
+
+    class Meta:
+        managed = True
+        db_table = "gsa_additional_ueis"
+
+    report_id = models.CharField
+    auditee_uei = models.CharField
+    audit_year= models.SmallIntegerField
+    additional_uei = models.CharField
 
 
 
