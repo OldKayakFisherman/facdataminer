@@ -6,7 +6,7 @@ services:
     image: postgres:15.1
     container_name: facdata-postgres
     ports:
-      - "5432:5432"
+      - "5480:5432"
     env_file:
       - .pgsql-env
     healthcheck:
