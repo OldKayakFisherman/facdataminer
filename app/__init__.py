@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from database.models import Base
+from app.database.models import Base
 
 db: SQLAlchemy = SQLAlchemy()
 

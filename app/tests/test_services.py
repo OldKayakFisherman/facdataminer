@@ -1,6 +1,6 @@
 import unittest
-from services.config import DEVConfig, TESTConfig, PRODConfig, get_config, EnvironmentType
-from services.files import PathResolver
+from app.services.config import DEVConfig, TESTConfig, PRODConfig, get_config, EnvironmentType
+from app.services.files import PathResolver
 from dotenv import set_key
 
 class ConfigTests(unittest.TestCase):

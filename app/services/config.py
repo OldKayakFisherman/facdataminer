@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 import os
 from abc import abstractmethod
 from enum import Enum
-from services.files import PathResolver
+from app.services.files import PathResolver
 
 class EnvironmentType(Enum):
     DEV = 0
