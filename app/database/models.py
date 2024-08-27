@@ -10,12 +10,22 @@ class Base(DeclarativeBase):
 
 class GSAInjestLog(Base):
 
-	__tablename__ = "gsa_injection_log"
+	__tablename__ = "gsa_injest_log"
 
 	id: Mapped[int] = mapped_column(primary_key=True)
 	reports_injested : Mapped[datetime]
 	collection_date : Mapped[datetime]
 	injection_date: Mapped[datetime]
+
+class CensusInjestLog(Base):
+
+	__tablename__ = "census_injest_log"
+
+	id: Mapped[int] = mapped_column(primary_key=True)
+	reports_injested : Mapped[datetime]
+	collection_date : Mapped[datetime]
+	injection_date: Mapped[datetime]
+
 
 class General(Base):
   
@@ -93,6 +103,9 @@ class General(Base):
 	additional_eins: Mapped[List["AdditionalEINs"]] = relationship(back_populates="general")
 
 class PriorFindings(Base):
+
+	__tablename__ = "prior_findings"
+
 	id: Mapped[int] = mapped_column(primary_key=True)
 	general_id: Mapped[int] = mapped_column(ForeignKey("gsa_general.id"))
 	general = relationship("General", back_populates="prior_findings")
@@ -100,6 +113,9 @@ class PriorFindings(Base):
 
 
 class FederalAwards(Base):
+
+	__tablename__ = "federal_awards"
+
 
 	id: Mapped[int] = mapped_column(primary_key=True)
 	general_id: Mapped[int] = mapped_column(ForeignKey("gsa_general.id"))
@@ -128,6 +144,9 @@ class FederalAwards(Base):
 
 class NotesToSefa(Base):
 
+	__tablename__ = "notes_to_sefa"
+
+
 	id: Mapped[int] = mapped_column(primary_key=True)
 	general_id: Mapped[int] = mapped_column(ForeignKey("gsa_general.id"))
 	general = relationship("General", back_populates="notes_to_sefa")
@@ -140,6 +159,8 @@ class NotesToSefa(Base):
 
 
 class Findings(Base):
+
+	__tablename__ = "findings"
 
 	id: Mapped[int] = mapped_column(primary_key=True)
 	general_id: Mapped[int] = mapped_column(ForeignKey("gsa_general.id"))
@@ -157,6 +178,9 @@ class Findings(Base):
 
 class FindingsText(Base):
 
+	__tablename__ = "findings_text"
+
+
 	id: Mapped[int] = mapped_column(primary_key=True)
 	general_id: Mapped[int] = mapped_column(ForeignKey("gsa_general.id"))
 	general = relationship("General", back_populates="findings_text")
@@ -166,6 +190,9 @@ class FindingsText(Base):
 
 class CorrectiveActionPlans(Base):
 
+	__tablename__ = "corrective_action_plans"
+
+
 	id: Mapped[int] = mapped_column(primary_key=True)
 	general_id: Mapped[int] = mapped_column(ForeignKey("gsa_general.id"))
 	general = relationship("General", back_populates="corrective_action_plan")
@@ -174,6 +201,8 @@ class CorrectiveActionPlans(Base):
 	contains_chart_or_table: Mapped[str]
 
 class Passthroughs(Base):
+
+	__tablename__ = "passthroughs"
 
 	id: Mapped[int] = mapped_column(primary_key=True)
 	general_id: Mapped[int] = mapped_column(ForeignKey("gsa_general.id"))
@@ -185,6 +214,7 @@ class Passthroughs(Base):
 
 class SecondaryAuditors(Base):
 
+	__tablename__ = "secondary_auditors"
 
 	id: Mapped[int] = mapped_column(primary_key=True)
 	general_id: Mapped[int] = mapped_column(ForeignKey("gsa_general.id"))
@@ -202,6 +232,8 @@ class SecondaryAuditors(Base):
 
 class AdditionalUEIs(Base):
 
+	__tablename__ = "additional_ueis"
+
 	id: Mapped[int] = mapped_column(primary_key=True)
 	general_id: Mapped[int] = mapped_column(ForeignKey("gsa_general.id"))
 	general = relationship("General", back_populates="additional_ueis")
@@ -209,6 +241,8 @@ class AdditionalUEIs(Base):
 
 
 class AdditionalEINs(Base):
+
+	__tablename__ = "additional_eins"
 
 	id: Mapped[int] = mapped_column(primary_key=True)
 	general_id: Mapped[int] = mapped_column(ForeignKey("gsa_general.id"))
